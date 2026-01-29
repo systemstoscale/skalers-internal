@@ -13,40 +13,40 @@ import {
 import '@xyflow/react/dist/style.css';
 import { nodeTypes } from '@/components/FlowNodes';
 
-// Business flow nodes showing the two sides of Skalers
-const businessNodes: Node[] = [
+// Business flow nodes showing the two sides of Skalers - spread out for no overlap
+const initialBusinessNodes: Node[] = [
   // === TOP: SKALERS.IO ===
-  { id: 'skalers', type: 'ai', position: { x: 300, y: 0 }, data: { label: 'Skalers.io' } },
-  { id: 'ai-agency', type: 'process', position: { x: 300, y: 80 }, data: { label: 'AI Agency' } },
+  { id: 'skalers', type: 'ai', position: { x: 350, y: 0 }, data: { label: 'Skalers.io' } },
+  { id: 'ai-agency', type: 'process', position: { x: 350, y: 100 }, data: { label: 'AI Agency' } },
 
   // === LEFT SIDE: SARA - CLIENT ACQUISITION ===
-  { id: 'sara-header', type: 'sara', position: { x: 50, y: 180 }, data: { label: 'Sara' } },
-  { id: 'acquisition', type: 'process', position: { x: 50, y: 260 }, data: { label: 'Client Acquisition' } },
+  { id: 'sara-header', type: 'sara', position: { x: 80, y: 220 }, data: { label: 'Sara' } },
+  { id: 'acquisition', type: 'process', position: { x: 80, y: 320 }, data: { label: 'Client Acquisition' } },
 
   // Sara's products (uses Antigravity + Claude Code → No-Code tools)
-  { id: '10x-leads', type: 'product', position: { x: -100, y: 360 }, data: { label: '10xLeads.io' } },
-  { id: '10x-content', type: 'product', position: { x: 50, y: 360 }, data: { label: '10xContent.io' } },
-  { id: 'nocode-tools', type: 'tool', position: { x: 200, y: 360 }, data: { label: 'No-Code Tools' } },
+  { id: '10x-leads', type: 'product', position: { x: -80, y: 440 }, data: { label: '10xLeads.io' } },
+  { id: '10x-content', type: 'product', position: { x: 80, y: 440 }, data: { label: '10xContent.io' } },
+  { id: 'nocode-tools', type: 'tool', position: { x: 240, y: 440 }, data: { label: 'No-Code Tools' } },
 
   // Sara's target clients
-  { id: 'low-revenue', type: 'client', position: { x: 50, y: 460 }, data: { label: 'Early-Stage Clients' } },
-  { id: 'need-leads', type: 'critical', position: { x: 50, y: 540 }, data: { label: 'Need Lead Gen' } },
+  { id: 'low-revenue', type: 'client', position: { x: 80, y: 560 }, data: { label: 'Early-Stage Clients' } },
+  { id: 'need-leads', type: 'critical', position: { x: 80, y: 680 }, data: { label: 'Need Lead Gen' } },
 
   // === RIGHT SIDE: MAX - CLIENT FULFILLMENT ===
-  { id: 'max-header', type: 'max', position: { x: 550, y: 180 }, data: { label: 'Max' } },
-  { id: 'fulfillment', type: 'process', position: { x: 550, y: 260 }, data: { label: 'Client Fulfillment' } },
+  { id: 'max-header', type: 'max', position: { x: 620, y: 220 }, data: { label: 'Max' } },
+  { id: 'fulfillment', type: 'process', position: { x: 620, y: 320 }, data: { label: 'Client Fulfillment' } },
 
   // Max's tools (coding-focused)
-  { id: 'nextjs', type: 'tool', position: { x: 400, y: 360 }, data: { label: 'Next.js' } },
-  { id: 'supabase', type: 'tool', position: { x: 550, y: 360 }, data: { label: 'Supabase' } },
-  { id: 'cloudflare', type: 'tool', position: { x: 700, y: 360 }, data: { label: 'Cloudflare' } },
+  { id: 'nextjs', type: 'tool', position: { x: 460, y: 440 }, data: { label: 'Next.js' } },
+  { id: 'supabase', type: 'tool', position: { x: 620, y: 440 }, data: { label: 'Supabase' } },
+  { id: 'cloudflare', type: 'tool', position: { x: 780, y: 440 }, data: { label: 'Cloudflare' } },
 
   // Max's target clients
-  { id: 'high-revenue', type: 'client', position: { x: 550, y: 460 }, data: { label: '7-Figure+ Clients' } },
-  { id: 'need-fulfillment', type: 'success', position: { x: 550, y: 540 }, data: { label: 'Need Fulfillment' } },
+  { id: 'high-revenue', type: 'client', position: { x: 620, y: 560 }, data: { label: '7-Figure+ Clients' } },
+  { id: 'need-fulfillment', type: 'success', position: { x: 620, y: 680 }, data: { label: 'Need Fulfillment' } },
 
   // === BOTTOM: SHARED OUTCOME ===
-  { id: 'agency-growth', type: 'startEnd', position: { x: 300, y: 660 }, data: { label: 'Agency Growth' } },
+  { id: 'agency-growth', type: 'startEnd', position: { x: 350, y: 820 }, data: { label: 'Agency Growth' } },
 ];
 
 const businessEdges: Edge[] = [
@@ -109,8 +109,8 @@ const maxTools = [
 ];
 
 export default function Home() {
-  const [nodes] = useNodesState(businessNodes);
-  const [edges] = useEdgesState(businessEdges);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialBusinessNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(businessEdges);
 
   return (
     <div className="min-h-screen">
@@ -254,6 +254,7 @@ export default function Home() {
           <ReactFlow
             nodes={nodes}
             edges={edges}
+            onNodesChange={onNodesChange}
             nodeTypes={nodeTypes}
             fitView
             minZoom={0.25}

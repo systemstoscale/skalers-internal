@@ -1,29 +1,24 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
-// Simple password protection for internal dashboard
-// Change these credentials as needed
-const USERNAME = 'skalers';
-const PASSWORD = 'internal2025';
+const PASSWORD = 'aquarius';
+const COOKIE_NAME = 'skalers_auth';
 
 export function middleware(request: NextRequest) {
-  const authHeader = request.headers.get('authorization');
-
-  if (authHeader) {
-    const authValue = authHeader.split(' ')[1];
-    const [user, pwd] = atob(authValue).split(':');
-
-    if (user === USERNAME && pwd === PASSWORD) {
-      return NextResponse.next();
-    }
+  // Allow access to login page and API
+  if (request.nextUrl.pathname === '/login' || request.nextUrl.pathname === '/api/login') {
+    return NextResponse.next();
   }
 
-  return new NextResponse('Authentication required', {
-    status: 401,
-    headers: {
-      'WWW-Authenticate': 'Basic realm="Skalers Internal"',
-    },
-  });
+  // Check for auth cookie
+  const authCookie = request.cookies.get(COOKIE_NAME);
+
+  if (authCookie?.value === PASSWORD) {
+    return NextResponse.next();
+  }
+
+  // Redirect to login page
+  return NextResponse.redirect(new URL('/login', request.url));
 }
 
 export const config = {

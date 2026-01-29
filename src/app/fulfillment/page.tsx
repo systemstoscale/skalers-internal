@@ -13,45 +13,45 @@ import {
 import '@xyflow/react/dist/style.css';
 import { nodeTypes } from '@/components/FlowNodes';
 
-// Max's fulfillment workflow
-const fulfillmentNodes: Node[] = [
+// Max's fulfillment workflow - spread out for no overlap
+const initialFulfillmentNodes: Node[] = [
   // Top: Max + Core Tools
   { id: 'max', type: 'max', position: { x: 300, y: 0 }, data: { label: 'Max' } },
-  { id: 'core-tools', type: 'ai', position: { x: 300, y: 80 }, data: { label: 'Antigravity + Claude Code' } },
-  { id: 'fulfillment', type: 'process', position: { x: 300, y: 160 }, data: { label: 'Client Fulfillment' } },
+  { id: 'core-tools', type: 'ai', position: { x: 300, y: 100 }, data: { label: 'Antigravity + Claude Code' } },
+  { id: 'fulfillment', type: 'process', position: { x: 300, y: 200 }, data: { label: 'Client Fulfillment' } },
 
   // Coding tools
-  { id: 'nextjs', type: 'tool', position: { x: 100, y: 260 }, data: { label: 'Next.js' } },
-  { id: 'supabase', type: 'tool', position: { x: 250, y: 260 }, data: { label: 'Supabase' } },
-  { id: 'cloudflare', type: 'tool', position: { x: 400, y: 260 }, data: { label: 'Cloudflare' } },
-  { id: 'idea-framework', type: 'tool', position: { x: 550, y: 260 }, data: { label: 'IDEA Framework' } },
+  { id: 'nextjs', type: 'tool', position: { x: 50, y: 320 }, data: { label: 'Next.js' } },
+  { id: 'supabase', type: 'tool', position: { x: 230, y: 320 }, data: { label: 'Supabase' } },
+  { id: 'cloudflare', type: 'tool', position: { x: 410, y: 320 }, data: { label: 'Cloudflare' } },
+  { id: 'idea-framework', type: 'tool', position: { x: 590, y: 320 }, data: { label: 'IDEA Framework' } },
 
   // Next.js breakdown
-  { id: 'react-apps', type: 'process', position: { x: 50, y: 360 }, data: { label: 'React Apps' } },
-  { id: 'api-routes', type: 'process', position: { x: 150, y: 360 }, data: { label: 'API Routes' } },
+  { id: 'react-apps', type: 'process', position: { x: -20, y: 440 }, data: { label: 'React Apps' } },
+  { id: 'api-routes', type: 'process', position: { x: 120, y: 440 }, data: { label: 'API Routes' } },
 
   // Supabase breakdown
-  { id: 'postgres', type: 'process', position: { x: 250, y: 360 }, data: { label: 'Postgres DB' } },
-  { id: 'auth', type: 'process', position: { x: 350, y: 360 }, data: { label: 'Auth' } },
+  { id: 'postgres', type: 'process', position: { x: 230, y: 440 }, data: { label: 'Postgres DB' } },
+  { id: 'auth', type: 'process', position: { x: 360, y: 440 }, data: { label: 'Auth' } },
 
   // Cloudflare breakdown
-  { id: 'd1-db', type: 'process', position: { x: 450, y: 360 }, data: { label: 'D1 Database' } },
-  { id: 'r2-storage', type: 'process', position: { x: 550, y: 360 }, data: { label: 'R2 Storage' } },
+  { id: 'd1-db', type: 'process', position: { x: 470, y: 440 }, data: { label: 'D1 Database' } },
+  { id: 'r2-storage', type: 'process', position: { x: 600, y: 440 }, data: { label: 'R2 Storage' } },
 
   // IDEA Framework breakdown
-  { id: 'instructions', type: 'process', position: { x: 500, y: 440 }, data: { label: 'Instructions' } },
-  { id: 'executions', type: 'process', position: { x: 600, y: 440 }, data: { label: 'Executions' } },
+  { id: 'instructions', type: 'process', position: { x: 520, y: 540 }, data: { label: 'Instructions' } },
+  { id: 'executions', type: 'process', position: { x: 660, y: 540 }, data: { label: 'Executions' } },
 
   // Deliverables
-  { id: 'ai-systems', type: 'ai', position: { x: 200, y: 540 }, data: { label: 'AI Systems' } },
-  { id: 'web-apps', type: 'success', position: { x: 400, y: 540 }, data: { label: 'Web Applications' } },
+  { id: 'ai-systems', type: 'ai', position: { x: 150, y: 660 }, data: { label: 'AI Systems' } },
+  { id: 'web-apps', type: 'success', position: { x: 420, y: 660 }, data: { label: 'Web Applications' } },
 
   // Target clients
-  { id: 'target-clients', type: 'client', position: { x: 300, y: 640 }, data: { label: '7-Figure+ Clients' } },
-  { id: 'have-clients', type: 'success', position: { x: 300, y: 720 }, data: { label: 'Have Clients, Need Systems' } },
+  { id: 'target-clients', type: 'client', position: { x: 300, y: 780 }, data: { label: '7-Figure+ Clients' } },
+  { id: 'have-clients', type: 'success', position: { x: 300, y: 880 }, data: { label: 'Have Clients, Need Systems' } },
 
   // Outcome
-  { id: 'delivered', type: 'startEnd', position: { x: 300, y: 820 }, data: { label: 'Systems Delivered' } },
+  { id: 'delivered', type: 'startEnd', position: { x: 300, y: 1000 }, data: { label: 'Systems Delivered' } },
 ];
 
 const fulfillmentEdges: Edge[] = [
@@ -194,8 +194,8 @@ const maxKpis = [
 ];
 
 export default function FulfillmentPage() {
-  const [nodes] = useNodesState(fulfillmentNodes);
-  const [edges] = useEdgesState(fulfillmentEdges);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialFulfillmentNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(fulfillmentEdges);
 
   return (
     <div className="min-h-screen">
@@ -332,6 +332,7 @@ export default function FulfillmentPage() {
             <ReactFlow
               nodes={nodes}
               edges={edges}
+              onNodesChange={onNodesChange}
               nodeTypes={nodeTypes}
               fitView
               minZoom={0.25}

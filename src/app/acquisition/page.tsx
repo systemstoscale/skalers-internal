@@ -13,40 +13,40 @@ import {
 import '@xyflow/react/dist/style.css';
 import { nodeTypes } from '@/components/FlowNodes';
 
-// Sara's acquisition workflow
-const acquisitionNodes: Node[] = [
+// Sara's acquisition workflow - spread out for no overlap
+const initialAcquisitionNodes: Node[] = [
   // Top: Sara + Core Tools
   { id: 'sara', type: 'sara', position: { x: 300, y: 0 }, data: { label: 'Sara' } },
-  { id: 'core-tools', type: 'ai', position: { x: 300, y: 80 }, data: { label: 'Antigravity + Claude Code' } },
-  { id: 'acquisition', type: 'process', position: { x: 300, y: 160 }, data: { label: 'Client Acquisition' } },
+  { id: 'core-tools', type: 'ai', position: { x: 300, y: 100 }, data: { label: 'Antigravity + Claude Code' } },
+  { id: 'acquisition', type: 'process', position: { x: 300, y: 200 }, data: { label: 'Client Acquisition' } },
 
   // Three main systems
-  { id: 'leads-system', type: 'product', position: { x: 100, y: 260 }, data: { label: '10xLeads.io' } },
-  { id: 'content-system', type: 'product', position: { x: 300, y: 260 }, data: { label: '10xContent.io' } },
-  { id: 'nocode-tools', type: 'tool', position: { x: 500, y: 260 }, data: { label: 'No-Code Tools' } },
+  { id: 'leads-system', type: 'product', position: { x: 50, y: 320 }, data: { label: '10xLeads.io' } },
+  { id: 'content-system', type: 'product', position: { x: 300, y: 320 }, data: { label: '10xContent.io' } },
+  { id: 'nocode-tools', type: 'tool', position: { x: 550, y: 320 }, data: { label: 'No-Code Tools' } },
 
   // Leads System breakdown
-  { id: 'scrape', type: 'process', position: { x: 0, y: 360 }, data: { label: 'Scrape Data' } },
-  { id: 'enrich', type: 'process', position: { x: 100, y: 440 }, data: { label: 'Enrich Leads' } },
-  { id: 'outreach', type: 'process', position: { x: 0, y: 520 }, data: { label: 'Automated Outreach' } },
+  { id: 'scrape', type: 'process', position: { x: -80, y: 440 }, data: { label: 'Scrape Data' } },
+  { id: 'enrich', type: 'process', position: { x: 50, y: 540 }, data: { label: 'Enrich Leads' } },
+  { id: 'outreach', type: 'process', position: { x: -80, y: 640 }, data: { label: 'Automated Outreach' } },
 
   // Content System breakdown
-  { id: 'video-in', type: 'process', position: { x: 250, y: 360 }, data: { label: '1 Video Input' } },
-  { id: 'ai-process', type: 'ai', position: { x: 300, y: 440 }, data: { label: 'AI Processing' } },
-  { id: 'multi-content', type: 'success', position: { x: 350, y: 520 }, data: { label: '30+ Pieces' } },
+  { id: 'video-in', type: 'process', position: { x: 230, y: 440 }, data: { label: '1 Video Input' } },
+  { id: 'ai-process', type: 'ai', position: { x: 300, y: 540 }, data: { label: 'AI Processing' } },
+  { id: 'multi-content', type: 'success', position: { x: 370, y: 640 }, data: { label: '30+ Pieces' } },
 
   // No-code tools breakdown
-  { id: 'n8n', type: 'tool', position: { x: 420, y: 360 }, data: { label: 'N8N' } },
-  { id: 'ghl', type: 'tool', position: { x: 520, y: 360 }, data: { label: 'GoHighLevel' } },
-  { id: 'manychat', type: 'tool', position: { x: 450, y: 440 }, data: { label: 'ManyChat' } },
-  { id: 'closebot', type: 'tool', position: { x: 550, y: 440 }, data: { label: 'Closebot' } },
+  { id: 'n8n', type: 'tool', position: { x: 480, y: 440 }, data: { label: 'N8N' } },
+  { id: 'ghl', type: 'tool', position: { x: 620, y: 440 }, data: { label: 'GoHighLevel' } },
+  { id: 'manychat', type: 'tool', position: { x: 480, y: 540 }, data: { label: 'ManyChat' } },
+  { id: 'closebot', type: 'tool', position: { x: 620, y: 540 }, data: { label: 'Closebot' } },
 
   // Target clients
-  { id: 'target-clients', type: 'client', position: { x: 300, y: 640 }, data: { label: 'Early-Stage B2B' } },
-  { id: 'need-leads', type: 'critical', position: { x: 300, y: 720 }, data: { label: 'Need Lead Generation' } },
+  { id: 'target-clients', type: 'client', position: { x: 300, y: 780 }, data: { label: 'Early-Stage B2B' } },
+  { id: 'need-leads', type: 'critical', position: { x: 300, y: 880 }, data: { label: 'Need Lead Generation' } },
 
   // Outcome
-  { id: 'new-clients', type: 'startEnd', position: { x: 300, y: 820 }, data: { label: 'New Skalers Clients' } },
+  { id: 'new-clients', type: 'startEnd', position: { x: 300, y: 1000 }, data: { label: 'New Skalers Clients' } },
 ];
 
 const acquisitionEdges: Edge[] = [
@@ -175,8 +175,8 @@ const responsibilities = [
 ];
 
 export default function AcquisitionPage() {
-  const [nodes] = useNodesState(acquisitionNodes);
-  const [edges] = useEdgesState(acquisitionEdges);
+  const [nodes, setNodes, onNodesChange] = useNodesState(initialAcquisitionNodes);
+  const [edges, setEdges, onEdgesChange] = useEdgesState(acquisitionEdges);
 
   return (
     <div className="min-h-screen">
@@ -315,6 +315,7 @@ export default function AcquisitionPage() {
           <ReactFlow
             nodes={nodes}
             edges={edges}
+            onNodesChange={onNodesChange}
             nodeTypes={nodeTypes}
             fitView
             minZoom={0.25}
