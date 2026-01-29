@@ -41,9 +41,10 @@ const initialAcquisitionNodes: Node[] = [
   { id: 'manychat', type: 'tool', position: { x: 480, y: 540 }, data: { label: 'ManyChat' } },
   { id: 'closebot', type: 'tool', position: { x: 620, y: 540 }, data: { label: 'Closebot' } },
 
-  // Target clients
-  { id: 'target-clients', type: 'client', position: { x: 300, y: 780 }, data: { label: 'Early-Stage B2B' } },
-  { id: 'need-leads', type: 'critical', position: { x: 300, y: 880 }, data: { label: 'Need Lead Generation' } },
+  // Target clients - two paths
+  { id: 'b2b-clients', type: 'client', position: { x: 100, y: 780 }, data: { label: 'B2B Clients' } },
+  { id: 'b2c-clients', type: 'client', position: { x: 500, y: 780 }, data: { label: 'B2C Clients' } },
+  { id: 'need-growth', type: 'critical', position: { x: 300, y: 880 }, data: { label: 'Need Growth Systems' } },
 
   // Outcome
   { id: 'new-clients', type: 'startEnd', position: { x: 300, y: 1000 }, data: { label: 'New Skalers Clients' } },
@@ -73,14 +74,17 @@ const acquisitionEdges: Edge[] = [
   { id: 'e-n8n-manychat', source: 'n8n', target: 'manychat', animated: true, style: { stroke: '#8b5cf6' } },
   { id: 'e-ghl-closebot', source: 'ghl', target: 'closebot', animated: true, style: { stroke: '#8b5cf6' } },
 
-  // Convergence to target
-  { id: 'e-outreach-target', source: 'outreach', target: 'target-clients', animated: true, style: { stroke: '#ec4899' } },
-  { id: 'e-multi-target', source: 'multi-content', target: 'target-clients', animated: true, style: { stroke: '#ec4899' } },
-  { id: 'e-closebot-target', source: 'closebot', target: 'target-clients', animated: true, style: { stroke: '#ec4899' } },
+  // B2B path (10xLeads → cold outreach)
+  { id: 'e-outreach-b2b', source: 'outreach', target: 'b2b-clients', animated: true, style: { stroke: '#6366f1' } },
+
+  // B2C path (10xContent + automations)
+  { id: 'e-multi-b2c', source: 'multi-content', target: 'b2c-clients', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-closebot-b2c', source: 'closebot', target: 'b2c-clients', animated: true, style: { stroke: '#8b5cf6' } },
 
   // Final flow
-  { id: 'e-target-need', source: 'target-clients', target: 'need-leads', animated: true, style: { stroke: '#ec4899' } },
-  { id: 'e-need-new', source: 'need-leads', target: 'new-clients', animated: true, style: { stroke: '#22c55e' } },
+  { id: 'e-b2b-need', source: 'b2b-clients', target: 'need-growth', animated: true, style: { stroke: '#6366f1' } },
+  { id: 'e-b2c-need', source: 'b2c-clients', target: 'need-growth', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-need-new', source: 'need-growth', target: 'new-clients', animated: true, style: { stroke: '#22c55e' } },
 ];
 
 const responsibilities = [
@@ -96,24 +100,24 @@ const responsibilities = [
     status: 'active',
   },
   {
-    title: '10xLeads.io',
-    description: 'Build and operate the leads machine for B2B client acquisition',
+    title: '10xLeads.io (B2B)',
+    description: 'Cold email & cold DM outreach for B2B client acquisition',
     tasks: [
-      'Learn the scraping and enrichment workflows',
-      'Set up outreach campaigns',
-      'Monitor and optimize conversion rates',
-      'Onboard new clients to the system',
+      'Scrape and enrich B2B lead data',
+      'Set up cold email campaigns (Instantly)',
+      'Configure cold DM sequences',
+      'Monitor deliverability and responses',
     ],
     status: 'building',
   },
   {
-    title: '10xContent.io',
-    description: 'Help clients repurpose their video content across platforms',
+    title: '10xContent.io (B2C)',
+    description: 'Content repurposing for B2C businesses on social media',
     tasks: [
-      'Understand the content transformation pipeline',
+      'Transform 1 video into 30+ pieces',
+      'Optimize for each social platform',
       'Quality control on AI outputs',
-      'Client communication and onboarding',
-      'Platform-specific optimization',
+      'Client onboarding and training',
     ],
     status: 'building',
   },
@@ -140,13 +144,13 @@ const responsibilities = [
     status: 'active',
   },
   {
-    title: 'ManyChat & Closebot',
-    description: 'Social media automation and AI sales chatbots',
+    title: 'ManyChat & Closebot (B2C)',
+    description: 'Social media automation and AI chatbots for B2C businesses',
     tasks: [
-      'Build conversation flows',
-      'Set up AI-powered responses',
-      'Instagram/Facebook automation',
-      'Lead qualification bots',
+      'Build Instagram/Facebook DM flows',
+      'Set up AI-powered chat responses',
+      'Automate lead qualification',
+      'Connect to GHL for booking',
     ],
     status: 'active',
   },
@@ -195,8 +199,8 @@ export default function AcquisitionPage() {
               </div>
             </div>
             <p className="text-xl text-[#999] mb-8 leading-relaxed">
-              Uses Antigravity + Claude Code to connect no-code tools (N8N, GHL, ManyChat, Closebot)
-              for automated lead generation and client acquisition.
+              Uses Antigravity + Claude Code to help <span className="text-indigo-400">B2B clients</span> with cold outreach (10xLeads)
+              and <span className="text-pink-400">B2C clients</span> with content & automation (10xContent, ManyChat, Closebot).
             </p>
           </div>
         </div>
@@ -206,18 +210,49 @@ export default function AcquisitionPage() {
       <section className="bg-[#111] border-y border-[#333]">
         <div className="max-w-7xl mx-auto px-6 py-16">
           <h2 className="text-2xl font-bold mb-8 text-center">Target Clients</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="card card-sara">
-              <h3 className="font-bold text-lg mb-2">Early-Stage Businesses</h3>
-              <p className="text-[#999] text-sm">Pre-7 figure businesses that haven&apos;t cracked client acquisition yet</p>
+          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* B2B Path */}
+            <div className="card" style={{ borderColor: '#6366f1' }}>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-indigo-500 to-indigo-600 flex items-center justify-center text-white font-bold">
+                  B2B
+                </div>
+                <h3 className="font-bold text-lg text-indigo-400">B2B Businesses</h3>
+              </div>
+              <p className="text-[#999] text-sm mb-4">Companies selling to other businesses</p>
+              <div className="space-y-2">
+                <div className="text-sm text-[#ccc]">
+                  <span className="text-indigo-400 font-semibold">Tool:</span> 10xLeads.io
+                </div>
+                <div className="text-sm text-[#ccc]">
+                  <span className="text-indigo-400 font-semibold">Method:</span> Cold emails & cold DMs
+                </div>
+                <div className="text-sm text-[#ccc]">
+                  <span className="text-indigo-400 font-semibold">Stack:</span> Apollo, Clay, Instantly
+                </div>
+              </div>
             </div>
+
+            {/* B2C Path */}
             <div className="card card-sara">
-              <h3 className="font-bold text-lg mb-2">B2B Companies</h3>
-              <p className="text-[#999] text-sm">Business-to-business companies that need systematic lead generation</p>
-            </div>
-            <div className="card card-sara">
-              <h3 className="font-bold text-lg mb-2">Need Lead Gen</h3>
-              <p className="text-[#999] text-sm">Businesses struggling with consistent client acquisition</p>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center text-white font-bold">
+                  B2C
+                </div>
+                <h3 className="font-bold text-lg text-pink-400">B2C Businesses</h3>
+              </div>
+              <p className="text-[#999] text-sm mb-4">Companies selling to consumers</p>
+              <div className="space-y-2">
+                <div className="text-sm text-[#ccc]">
+                  <span className="text-pink-400 font-semibold">Tool:</span> 10xContent.io
+                </div>
+                <div className="text-sm text-[#ccc]">
+                  <span className="text-pink-400 font-semibold">Method:</span> Content + social automation
+                </div>
+                <div className="text-sm text-[#ccc]">
+                  <span className="text-pink-400 font-semibold">Stack:</span> ManyChat, Closebot, GHL
+                </div>
+              </div>
             </div>
           </div>
         </div>

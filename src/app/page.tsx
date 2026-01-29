@@ -28,9 +28,10 @@ const initialBusinessNodes: Node[] = [
   { id: '10x-content', type: 'product', position: { x: 80, y: 440 }, data: { label: '10xContent.io' } },
   { id: 'nocode-tools', type: 'tool', position: { x: 240, y: 440 }, data: { label: 'No-Code Tools' } },
 
-  // Sara's target clients
-  { id: 'low-revenue', type: 'client', position: { x: 80, y: 560 }, data: { label: 'Early-Stage Clients' } },
-  { id: 'need-leads', type: 'critical', position: { x: 80, y: 680 }, data: { label: 'Need Lead Gen' } },
+  // Sara's target clients (B2B and B2C)
+  { id: 'b2b-target', type: 'client', position: { x: -40, y: 560 }, data: { label: 'B2B Clients' } },
+  { id: 'b2c-target', type: 'client', position: { x: 200, y: 560 }, data: { label: 'B2C Clients' } },
+  { id: 'need-growth', type: 'critical', position: { x: 80, y: 680 }, data: { label: 'Need Growth' } },
 
   // === RIGHT SIDE: MAX - CLIENT FULFILLMENT ===
   { id: 'max-header', type: 'max', position: { x: 620, y: 220 }, data: { label: 'Max' } },
@@ -59,11 +60,13 @@ const businessEdges: Edge[] = [
 
   // Sara's flow
   { id: 'e-sara-acq', source: 'sara-header', target: 'acquisition', animated: true, style: { stroke: '#ec4899' } },
-  { id: 'e-acq-leads', source: 'acquisition', target: '10x-leads', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-acq-leads', source: 'acquisition', target: '10x-leads', animated: true, style: { stroke: '#6366f1' } },
   { id: 'e-acq-content', source: 'acquisition', target: '10x-content', animated: true, style: { stroke: '#ec4899' } },
   { id: 'e-acq-nocode', source: 'acquisition', target: 'nocode-tools', animated: true, style: { stroke: '#ec4899' } },
-  { id: 'e-products-low', source: '10x-content', target: 'low-revenue', animated: true, style: { stroke: '#ec4899' } },
-  { id: 'e-low-need', source: 'low-revenue', target: 'need-leads', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-leads-b2b', source: '10x-leads', target: 'b2b-target', animated: true, style: { stroke: '#6366f1' } },
+  { id: 'e-content-b2c', source: '10x-content', target: 'b2c-target', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-b2b-growth', source: 'b2b-target', target: 'need-growth', animated: true, style: { stroke: '#6366f1' } },
+  { id: 'e-b2c-growth', source: 'b2c-target', target: 'need-growth', animated: true, style: { stroke: '#ec4899' } },
 
   // Max's flow
   { id: 'e-max-fulfill', source: 'max-header', target: 'fulfillment', animated: true, style: { stroke: '#3b82f6' } },
@@ -74,7 +77,7 @@ const businessEdges: Edge[] = [
   { id: 'e-high-need', source: 'high-revenue', target: 'need-fulfillment', animated: true, style: { stroke: '#3b82f6' } },
 
   // Bottom convergence
-  { id: 'e-need-leads-growth', source: 'need-leads', target: 'agency-growth', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-need-growth-agency', source: 'need-growth', target: 'agency-growth', animated: true, style: { stroke: '#ec4899' } },
   { id: 'e-need-fulfill-growth', source: 'need-fulfillment', target: 'agency-growth', animated: true, style: { stroke: '#3b82f6' } },
 ];
 
@@ -162,22 +165,22 @@ export default function Home() {
               </div>
               <p className="text-[#999] mb-6">
                 Responsible for bringing in new clients using Antigravity + Claude Code
-                connected to no-code tools. Focus on early-stage B2B businesses.
+                connected to no-code tools. Works with both B2B and B2C businesses.
               </p>
               <div className="space-y-3">
                 <h3 className="text-sm font-semibold text-[#888] uppercase tracking-wider">Target Clients</h3>
                 <ul className="space-y-2 text-[#ccc]">
                   <li className="flex gap-2">
-                    <span className="text-pink-400">*</span>
-                    Early-stage businesses (pre-7 figures)
+                    <span className="text-indigo-400">*</span>
+                    <span><strong className="text-indigo-400">B2B:</strong> Cold emails & DMs (10xLeads)</span>
                   </li>
                   <li className="flex gap-2">
                     <span className="text-pink-400">*</span>
-                    Need help with lead generation
+                    <span><strong className="text-pink-400">B2C:</strong> Content & automation (10xContent)</span>
                   </li>
                   <li className="flex gap-2">
                     <span className="text-pink-400">*</span>
-                    B2B companies primarily
+                    Early-stage businesses needing growth
                   </li>
                 </ul>
               </div>
