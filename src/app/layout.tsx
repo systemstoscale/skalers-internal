@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Skalers.io | Internal Operations Dashboard",
-  description: "Internal reference for Skalers.io operations - Client Acquisition (Sarah) & Client Fulfillment (Max)",
+  description: "Internal reference for Skalers.io operations - Client Acquisition (Sara) & Client Fulfillment (Max)",
 };
 
 export default function RootLayout({

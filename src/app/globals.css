@@ -7,7 +7,7 @@
   --accent-gold: #f8d380;
   --background: #0a0a0a;
   --foreground: #ededed;
-  --sarah-color: #ec4899;
+  --sara-color: #ec4899;
   --max-color: #3b82f6;
 }
 
@@ -159,13 +159,13 @@ body {
   background: linear-gradient(135deg, rgba(248, 211, 128, 0.1) 0%, rgba(248, 211, 128, 0.02) 100%);
 }
 
-.card-sarah {
-  border-color: var(--sarah-color);
+.card-sara {
+  border-color: var(--sara-color);
   background: linear-gradient(135deg, rgba(236, 72, 153, 0.1) 0%, rgba(236, 72, 153, 0.02) 100%);
 }
 
-.card-sarah:hover {
-  border-color: var(--sarah-color);
+.card-sara:hover {
+  border-color: var(--sara-color);
 }
 
 .card-max {
@@ -210,7 +210,7 @@ body {
   box-shadow: 0 4px 20px rgba(248, 211, 128, 0.3);
 }
 
-.btn-sarah {
+.btn-sara {
   background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
   color: white;
   font-weight: 600;
@@ -219,7 +219,7 @@ body {
   transition: all 0.2s ease;
 }
 
-.btn-sarah:hover {
+.btn-sara:hover {
   transform: scale(1.02);
   box-shadow: 0 4px 20px rgba(236, 72, 153, 0.3);
 }

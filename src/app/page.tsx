@@ -20,16 +20,16 @@ const businessNodes: Node[] = [
   { id: 'skalers', type: 'ai', position: { x: 300, y: 0 }, data: { label: 'Skalers.io' } },
   { id: 'ai-agency', type: 'process', position: { x: 300, y: 80 }, data: { label: 'AI Agency' } },
 
-  // === LEFT SIDE: SARAH - CLIENT ACQUISITION ===
-  { id: 'sarah-header', type: 'sarah', position: { x: 50, y: 180 }, data: { label: 'Sarah' } },
+  // === LEFT SIDE: SARA - CLIENT ACQUISITION ===
+  { id: 'sara-header', type: 'sara', position: { x: 50, y: 180 }, data: { label: 'Sara' } },
   { id: 'acquisition', type: 'process', position: { x: 50, y: 260 }, data: { label: 'Client Acquisition' } },
 
-  // Sarah's products
+  // Sara's products (uses Anti-Gravity + Claude Code → No-Code tools)
   { id: '10x-leads', type: 'product', position: { x: -100, y: 360 }, data: { label: '10xLeads.io' } },
   { id: '10x-content', type: 'product', position: { x: 50, y: 360 }, data: { label: '10xContent.io' } },
-  { id: 'ghl-setup', type: 'tool', position: { x: 200, y: 360 }, data: { label: 'GHL Setup' } },
+  { id: 'nocode-tools', type: 'tool', position: { x: 200, y: 360 }, data: { label: 'No-Code Tools' } },
 
-  // Sarah's target clients
+  // Sara's target clients
   { id: 'low-revenue', type: 'client', position: { x: 50, y: 460 }, data: { label: 'Early-Stage Clients' } },
   { id: 'need-leads', type: 'critical', position: { x: 50, y: 540 }, data: { label: 'Need Lead Gen' } },
 
@@ -37,10 +37,10 @@ const businessNodes: Node[] = [
   { id: 'max-header', type: 'max', position: { x: 550, y: 180 }, data: { label: 'Max' } },
   { id: 'fulfillment', type: 'process', position: { x: 550, y: 260 }, data: { label: 'Client Fulfillment' } },
 
-  // Max's tools
-  { id: 'antigravity', type: 'tool', position: { x: 400, y: 360 }, data: { label: 'Anti-Gravity' } },
-  { id: 'claude-code', type: 'tool', position: { x: 550, y: 360 }, data: { label: 'Claude Code' } },
-  { id: 'idea-framework', type: 'tool', position: { x: 700, y: 360 }, data: { label: 'IDEA Framework' } },
+  // Max's tools (coding-focused)
+  { id: 'nextjs', type: 'tool', position: { x: 400, y: 360 }, data: { label: 'Next.js' } },
+  { id: 'supabase', type: 'tool', position: { x: 550, y: 360 }, data: { label: 'Supabase' } },
+  { id: 'cloudflare', type: 'tool', position: { x: 700, y: 360 }, data: { label: 'Cloudflare' } },
 
   // Max's target clients
   { id: 'high-revenue', type: 'client', position: { x: 550, y: 460 }, data: { label: '7-Figure+ Clients' } },
@@ -55,23 +55,23 @@ const businessEdges: Edge[] = [
   { id: 'e-skalers-agency', source: 'skalers', target: 'ai-agency', animated: true, style: { stroke: '#f8d380' } },
 
   // Agency to both sides
-  { id: 'e-agency-sarah', source: 'ai-agency', target: 'sarah-header', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-agency-sara', source: 'ai-agency', target: 'sara-header', animated: true, style: { stroke: '#ec4899' } },
   { id: 'e-agency-max', source: 'ai-agency', target: 'max-header', animated: true, style: { stroke: '#3b82f6' } },
 
-  // Sarah's flow
-  { id: 'e-sarah-acq', source: 'sarah-header', target: 'acquisition', animated: true, style: { stroke: '#ec4899' } },
+  // Sara's flow
+  { id: 'e-sara-acq', source: 'sara-header', target: 'acquisition', animated: true, style: { stroke: '#ec4899' } },
   { id: 'e-acq-leads', source: 'acquisition', target: '10x-leads', animated: true, style: { stroke: '#ec4899' } },
   { id: 'e-acq-content', source: 'acquisition', target: '10x-content', animated: true, style: { stroke: '#ec4899' } },
-  { id: 'e-acq-ghl', source: 'acquisition', target: 'ghl-setup', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-acq-nocode', source: 'acquisition', target: 'nocode-tools', animated: true, style: { stroke: '#ec4899' } },
   { id: 'e-products-low', source: '10x-content', target: 'low-revenue', animated: true, style: { stroke: '#ec4899' } },
   { id: 'e-low-need', source: 'low-revenue', target: 'need-leads', animated: true, style: { stroke: '#ec4899' } },
 
   // Max's flow
   { id: 'e-max-fulfill', source: 'max-header', target: 'fulfillment', animated: true, style: { stroke: '#3b82f6' } },
-  { id: 'e-fulfill-anti', source: 'fulfillment', target: 'antigravity', animated: true, style: { stroke: '#3b82f6' } },
-  { id: 'e-fulfill-claude', source: 'fulfillment', target: 'claude-code', animated: true, style: { stroke: '#3b82f6' } },
-  { id: 'e-fulfill-idea', source: 'fulfillment', target: 'idea-framework', animated: true, style: { stroke: '#3b82f6' } },
-  { id: 'e-tools-high', source: 'claude-code', target: 'high-revenue', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-fulfill-nextjs', source: 'fulfillment', target: 'nextjs', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-fulfill-supabase', source: 'fulfillment', target: 'supabase', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-fulfill-cloudflare', source: 'fulfillment', target: 'cloudflare', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-tools-high', source: 'supabase', target: 'high-revenue', animated: true, style: { stroke: '#3b82f6' } },
   { id: 'e-high-need', source: 'high-revenue', target: 'need-fulfillment', animated: true, style: { stroke: '#3b82f6' } },
 
   // Bottom convergence
@@ -79,19 +79,22 @@ const businessEdges: Edge[] = [
   { id: 'e-need-fulfill-growth', source: 'need-fulfillment', target: 'agency-growth', animated: true, style: { stroke: '#3b82f6' } },
 ];
 
-const sarahTools = [
-  { name: '10xLeads.io', description: 'Scrape, enrich, outreach on autopilot', status: 'building' },
-  { name: '10xContent.io', description: '1 video to 30+ pieces across all platforms', status: 'building' },
+const saraTools = [
+  { name: 'Anti-Gravity', description: 'AI development environment', status: 'active' },
+  { name: 'Claude Code', description: 'AI-powered coding assistant', status: 'active' },
+  { name: 'N8N', description: 'Workflow automation platform', status: 'active' },
   { name: 'GoHighLevel', description: 'CRM, automations, funnels', status: 'active' },
   { name: 'ManyChat', description: 'Social media automation & AI bots', status: 'active' },
-  { name: 'Vapi', description: 'Voice AI agents for calls', status: 'planned' },
+  { name: 'Closebot', description: 'AI sales chatbot', status: 'active' },
 ];
 
 const maxTools = [
   { name: 'Anti-Gravity', description: 'AI development environment', status: 'active' },
   { name: 'Claude Code', description: 'AI-powered coding assistant', status: 'active' },
-  { name: 'IDEA Framework', description: 'Instructions, Decisions, Executions, AI', status: 'active' },
-  { name: 'Airtable', description: 'Personal OS & Business OS databases', status: 'active' },
+  { name: 'Next.js', description: 'React framework for web apps', status: 'active' },
+  { name: 'Supabase', description: 'Backend as a service (Postgres)', status: 'active' },
+  { name: 'Cloudflare D1', description: 'Edge SQL database', status: 'active' },
+  { name: 'Cloudflare R2', description: 'Object storage', status: 'active' },
 ];
 
 export default function Home() {
@@ -120,8 +123,8 @@ export default function Home() {
               client acquisition and client fulfillment.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <Link href="/acquisition" className="btn-sarah">
-                Acquisition (Sarah)
+              <Link href="/acquisition" className="btn-sara">
+                Acquisition (Sara)
               </Link>
               <Link href="/fulfillment" className="btn-max">
                 Fulfillment (Max)
@@ -135,20 +138,20 @@ export default function Home() {
       <section className="bg-[#111] border-y border-[#333]">
         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Sarah's Side */}
-            <div className="card card-sarah">
+            {/* Sara's Side */}
+            <div className="card card-sara">
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-12 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center text-white font-bold text-xl">
                   S
                 </div>
                 <div>
-                  <h2 className="text-2xl font-bold text-white">Sarah</h2>
+                  <h2 className="text-2xl font-bold text-white">Sara</h2>
                   <p className="text-pink-400">Client Acquisition</p>
                 </div>
               </div>
               <p className="text-[#999] mb-6">
-                Responsible for bringing in new clients. Focus on early-stage businesses
-                that need help cracking lead generation and client acquisition systems.
+                Responsible for bringing in new clients using Anti-Gravity + Claude Code
+                connected to no-code tools. Focus on early-stage B2B businesses.
               </p>
               <div className="space-y-3">
                 <h3 className="text-sm font-semibold text-[#888] uppercase tracking-wider">Target Clients</h3>
@@ -167,7 +170,7 @@ export default function Home() {
                   </li>
                 </ul>
               </div>
-              <Link href="/acquisition" className="btn-sarah mt-6 inline-block">
+              <Link href="/acquisition" className="btn-sara mt-6 inline-block">
                 View Details
               </Link>
             </div>
@@ -184,8 +187,8 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-[#999] mb-6">
-                Responsible for delivering results to clients. Focus on higher-level clients
-                who already have customers but need help with AI-powered fulfillment systems.
+                Responsible for delivering results using Anti-Gravity + Claude Code with
+                advanced coding tools (Next.js, Supabase, Cloudflare). Focus on 7-figure+ clients.
               </p>
               <div className="space-y-3">
                 <h3 className="text-sm font-semibold text-[#888] uppercase tracking-wider">Target Clients</h3>
@@ -223,7 +226,7 @@ export default function Home() {
         <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-6 text-xs md:text-sm">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 md:w-4 md:h-4 rounded bg-gradient-to-r from-pink-500 to-pink-600" />
-            <span className="text-pink-400">Sarah (Acquisition)</span>
+            <span className="text-pink-400">Sara (Acquisition)</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 md:w-4 md:h-4 rounded bg-gradient-to-r from-blue-500 to-blue-600" />
@@ -266,11 +269,11 @@ export default function Home() {
             <p className="text-[#999]">The tech stack powering both sides of the business</p>
           </div>
           <div className="grid md:grid-cols-2 gap-8">
-            {/* Sarah's Tools */}
+            {/* Sara's Tools */}
             <div>
-              <h3 className="text-xl font-bold text-pink-400 mb-4">Sarah&apos;s Tools</h3>
+              <h3 className="text-xl font-bold text-pink-400 mb-4">Sara&apos;s Tools</h3>
               <div className="space-y-3">
-                {sarahTools.map((tool) => (
+                {saraTools.map((tool) => (
                   <div key={tool.name} className="card !p-4 flex items-center justify-between">
                     <div>
                       <div className="font-semibold text-white">{tool.name}</div>

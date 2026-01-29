@@ -12,7 +12,7 @@ const maxPriorities = [
   },
   {
     title: 'Finish 10xLeads.io',
-    description: 'Complete the leads machine so Sarah can learn it and use it for client acquisition',
+    description: 'Complete the leads machine so Sara can learn it and use it for client acquisition',
     priority: 'high',
     status: 'in-progress',
     deadline: 'This week',
@@ -25,15 +25,22 @@ const maxPriorities = [
     deadline: 'Ongoing',
   },
   {
-    title: 'Teach Sarah the Systems',
-    description: 'Document and train Sarah on 10xLeads.io, GHL, ManyChat, Vapi, and other acquisition tools',
+    title: 'Teach Sara the Systems',
+    description: 'Document and train Sara on Anti-Gravity, Claude Code, and no-code tools (N8N, GHL, ManyChat, Closebot)',
     priority: 'medium',
     status: 'pending',
     deadline: 'After 10xLeads.io',
   },
 ];
 
-const sarahPriorities = [
+const saraPriorities: typeof maxPriorities = [
+  {
+    title: 'Learn Anti-Gravity + Claude Code',
+    description: 'Master the core AI tools that connect to all no-code platforms',
+    priority: 'high',
+    status: 'in-progress',
+    deadline: 'This week',
+  },
   {
     title: 'Learn 10xLeads.io',
     description: 'Once Max finishes the leads machine, learn how to set it up for B2B clients',
@@ -49,25 +56,18 @@ const sarahPriorities = [
     deadline: 'When ready',
   },
   {
-    title: 'GoHighLevel Training',
-    description: 'Max will show how to set up GHL for client CRM and automation',
+    title: 'N8N + GoHighLevel',
+    description: 'Learn workflow automation and CRM setup for clients',
     priority: 'medium',
     status: 'pending',
     deadline: 'TBD',
   },
   {
-    title: 'ManyChat & AI Bots',
-    description: 'Learn to set up ManyChat automation and AI chatbots for social media',
+    title: 'ManyChat & Closebot',
+    description: 'Learn social media automation and AI sales chatbots',
     priority: 'medium',
     status: 'pending',
     deadline: 'TBD',
-  },
-  {
-    title: 'Vapi Voice AI',
-    description: 'Learn voice AI agents for appointment booking and phone automation',
-    priority: 'low',
-    status: 'planned',
-    deadline: 'Future',
   },
 ];
 
@@ -75,7 +75,7 @@ const problemsToSolve = [
   {
     problem: 'Focus is spread too thin',
     owner: 'Max',
-    solution: 'Clear separation: Sarah handles acquisition, Max handles fulfillment',
+    solution: 'Clear separation: Sara handles acquisition, Max handles fulfillment',
     status: 'in-progress',
   },
   {
@@ -87,13 +87,13 @@ const problemsToSolve = [
   {
     problem: '10xLeads.io not finished',
     owner: 'Max',
-    solution: 'Priority this week - complete so Sarah can use it',
+    solution: 'Priority this week - complete so Sara can use it',
     status: 'in-progress',
   },
   {
-    problem: 'Sarah needs training on systems',
+    problem: 'Sara needs training on systems',
     owner: 'Max',
-    solution: 'Document everything and train Sarah on each tool',
+    solution: 'Document everything and train Sara on each tool',
     status: 'pending',
   },
   {
@@ -135,7 +135,7 @@ export default function StatusPage() {
             </h1>
             <p className="text-xl text-[#999] mb-8 leading-relaxed">
               What&apos;s being worked on right now and what&apos;s coming next.
-              A clear view of priorities for both Max and Sarah.
+              A clear view of priorities for both Max and Sara.
             </p>
           </div>
         </div>
@@ -155,11 +155,11 @@ export default function StatusPage() {
                 <ul className="space-y-1 text-sm text-[#ccc]">
                   <li>* Finish products (10xContent, 10xLeads)</li>
                   <li>* Fulfill with current clients</li>
-                  <li>* Train Sarah on systems</li>
+                  <li>* Train Sara on systems</li>
                 </ul>
               </div>
               <div className="bg-[#222] rounded-lg p-4">
-                <h3 className="font-semibold text-pink-400 mb-2">Sarah&apos;s Focus</h3>
+                <h3 className="font-semibold text-pink-400 mb-2">Sara&apos;s Focus</h3>
                 <ul className="space-y-1 text-sm text-[#ccc]">
                   <li>* Learn the acquisition systems</li>
                   <li>* Take over client acquisition</li>
@@ -201,16 +201,16 @@ export default function StatusPage() {
             </div>
           </div>
 
-          {/* Sarah's Priorities */}
+          {/* Sara's Priorities */}
           <div>
             <div className="flex items-center gap-3 mb-6">
               <div className="w-10 h-10 rounded-full bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center text-white font-bold">
                 S
               </div>
-              <h2 className="text-2xl font-bold text-pink-400">Sarah&apos;s Priorities</h2>
+              <h2 className="text-2xl font-bold text-pink-400">Sara&apos;s Priorities</h2>
             </div>
             <div className="space-y-4">
-              {sarahPriorities.map((item, i) => (
+              {saraPriorities.map((item, i) => (
                 <div key={i} className="card">
                   <div className="flex items-start justify-between gap-4 mb-2">
                     <h3 className="font-semibold text-white">{item.title}</h3>
@@ -288,7 +288,7 @@ export default function StatusPage() {
                 <div className="absolute left-2.5 w-3 h-3 rounded-full bg-pink-400" />
                 <div className="card">
                   <h3 className="font-semibold text-white mb-1">Next Week</h3>
-                  <p className="text-[#888] text-sm">Sarah starts learning 10xLeads.io</p>
+                  <p className="text-[#888] text-sm">Sara starts learning 10xLeads.io</p>
                 </div>
               </div>
               <div className="relative pl-12">
@@ -302,7 +302,7 @@ export default function StatusPage() {
                 <div className="absolute left-2.5 w-3 h-3 rounded-full bg-[#f8d380]" />
                 <div className="card">
                   <h3 className="font-semibold text-white mb-1">Goal State</h3>
-                  <p className="text-[#888] text-sm">Sarah handles acquisition, Max handles fulfillment - clear separation</p>
+                  <p className="text-[#888] text-sm">Sara handles acquisition, Max handles fulfillment - clear separation</p>
                 </div>
               </div>
             </div>
@@ -315,8 +315,8 @@ export default function StatusPage() {
         <div className="max-w-7xl mx-auto px-6 py-20 text-center">
           <h2 className="text-2xl font-bold mb-8">Quick Links</h2>
           <div className="flex flex-wrap justify-center gap-4">
-            <Link href="/acquisition" className="btn-sarah">
-              Sarah&apos;s Page
+            <Link href="/acquisition" className="btn-sara">
+              Sara&apos;s Page
             </Link>
             <Link href="/fulfillment" className="btn-max">
               Max&apos;s Page

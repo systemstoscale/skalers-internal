@@ -16,69 +16,79 @@ import { nodeTypes } from '@/components/FlowNodes';
 
 // Max's fulfillment workflow
 const fulfillmentNodes: Node[] = [
-  // Top: Max
+  // Top: Max + Core Tools
   { id: 'max', type: 'max', position: { x: 300, y: 0 }, data: { label: 'Max' } },
-  { id: 'fulfillment', type: 'process', position: { x: 300, y: 80 }, data: { label: 'Client Fulfillment' } },
+  { id: 'core-tools', type: 'ai', position: { x: 300, y: 80 }, data: { label: 'Anti-Gravity + Claude Code' } },
+  { id: 'fulfillment', type: 'process', position: { x: 300, y: 160 }, data: { label: 'Client Fulfillment' } },
 
-  // Core tools
-  { id: 'antigravity', type: 'tool', position: { x: 100, y: 180 }, data: { label: 'Anti-Gravity' } },
-  { id: 'claude-code', type: 'ai', position: { x: 300, y: 180 }, data: { label: 'Claude Code' } },
-  { id: 'idea-framework', type: 'tool', position: { x: 500, y: 180 }, data: { label: 'IDEA Framework' } },
+  // Coding tools
+  { id: 'nextjs', type: 'tool', position: { x: 100, y: 260 }, data: { label: 'Next.js' } },
+  { id: 'supabase', type: 'tool', position: { x: 250, y: 260 }, data: { label: 'Supabase' } },
+  { id: 'cloudflare', type: 'tool', position: { x: 400, y: 260 }, data: { label: 'Cloudflare' } },
+  { id: 'idea-framework', type: 'tool', position: { x: 550, y: 260 }, data: { label: 'IDEA Framework' } },
 
-  // Anti-Gravity breakdown
-  { id: 'ag-dev', type: 'process', position: { x: 50, y: 280 }, data: { label: 'Dev Environment' } },
-  { id: 'ag-context', type: 'process', position: { x: 150, y: 280 }, data: { label: 'Context Loading' } },
+  // Next.js breakdown
+  { id: 'react-apps', type: 'process', position: { x: 50, y: 360 }, data: { label: 'React Apps' } },
+  { id: 'api-routes', type: 'process', position: { x: 150, y: 360 }, data: { label: 'API Routes' } },
 
-  // Claude Code breakdown
-  { id: 'cc-coding', type: 'process', position: { x: 250, y: 280 }, data: { label: 'AI Coding' } },
-  { id: 'cc-automation', type: 'process', position: { x: 350, y: 280 }, data: { label: 'Automation' } },
+  // Supabase breakdown
+  { id: 'postgres', type: 'process', position: { x: 250, y: 360 }, data: { label: 'Postgres DB' } },
+  { id: 'auth', type: 'process', position: { x: 350, y: 360 }, data: { label: 'Auth' } },
+
+  // Cloudflare breakdown
+  { id: 'd1-db', type: 'process', position: { x: 450, y: 360 }, data: { label: 'D1 Database' } },
+  { id: 'r2-storage', type: 'process', position: { x: 550, y: 360 }, data: { label: 'R2 Storage' } },
 
   // IDEA Framework breakdown
-  { id: 'instructions', type: 'process', position: { x: 450, y: 280 }, data: { label: 'Instructions' } },
-  { id: 'decisions', type: 'decision', position: { x: 550, y: 280 }, data: { label: 'Decisions' } },
-  { id: 'executions', type: 'process', position: { x: 500, y: 380 }, data: { label: 'Executions' } },
+  { id: 'instructions', type: 'process', position: { x: 500, y: 440 }, data: { label: 'Instructions' } },
+  { id: 'executions', type: 'process', position: { x: 600, y: 440 }, data: { label: 'Executions' } },
 
   // Deliverables
-  { id: 'ai-systems', type: 'ai', position: { x: 200, y: 480 }, data: { label: 'AI Systems' } },
-  { id: 'automations', type: 'success', position: { x: 400, y: 480 }, data: { label: 'Custom Automations' } },
+  { id: 'ai-systems', type: 'ai', position: { x: 200, y: 540 }, data: { label: 'AI Systems' } },
+  { id: 'web-apps', type: 'success', position: { x: 400, y: 540 }, data: { label: 'Web Applications' } },
 
   // Target clients
-  { id: 'target-clients', type: 'client', position: { x: 300, y: 580 }, data: { label: '7-Figure+ Clients' } },
-  { id: 'have-clients', type: 'success', position: { x: 300, y: 660 }, data: { label: 'Have Clients, Need Systems' } },
+  { id: 'target-clients', type: 'client', position: { x: 300, y: 640 }, data: { label: '7-Figure+ Clients' } },
+  { id: 'have-clients', type: 'success', position: { x: 300, y: 720 }, data: { label: 'Have Clients, Need Systems' } },
 
   // Outcome
-  { id: 'delivered', type: 'startEnd', position: { x: 300, y: 760 }, data: { label: 'Systems Delivered' } },
+  { id: 'delivered', type: 'startEnd', position: { x: 300, y: 820 }, data: { label: 'Systems Delivered' } },
 ];
 
 const fulfillmentEdges: Edge[] = [
   // Top flow
-  { id: 'e-max-fulfill', source: 'max', target: 'fulfillment', animated: true, style: { stroke: '#3b82f6' } },
-  { id: 'e-fulfill-ag', source: 'fulfillment', target: 'antigravity', animated: true, style: { stroke: '#3b82f6' } },
-  { id: 'e-fulfill-cc', source: 'fulfillment', target: 'claude-code', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-max-tools', source: 'max', target: 'core-tools', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-tools-fulfill', source: 'core-tools', target: 'fulfillment', animated: true, style: { stroke: '#f8d380' } },
+  { id: 'e-fulfill-nextjs', source: 'fulfillment', target: 'nextjs', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-fulfill-supabase', source: 'fulfillment', target: 'supabase', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-fulfill-cloudflare', source: 'fulfillment', target: 'cloudflare', animated: true, style: { stroke: '#3b82f6' } },
   { id: 'e-fulfill-idea', source: 'fulfillment', target: 'idea-framework', animated: true, style: { stroke: '#3b82f6' } },
 
-  // Anti-Gravity breakdown
-  { id: 'e-ag-dev', source: 'antigravity', target: 'ag-dev', animated: true, style: { stroke: '#8b5cf6' } },
-  { id: 'e-ag-context', source: 'antigravity', target: 'ag-context', animated: true, style: { stroke: '#8b5cf6' } },
+  // Next.js breakdown
+  { id: 'e-nextjs-react', source: 'nextjs', target: 'react-apps', animated: true, style: { stroke: '#8b5cf6' } },
+  { id: 'e-nextjs-api', source: 'nextjs', target: 'api-routes', animated: true, style: { stroke: '#8b5cf6' } },
 
-  // Claude Code breakdown
-  { id: 'e-cc-coding', source: 'claude-code', target: 'cc-coding', animated: true, style: { stroke: '#f8d380' } },
-  { id: 'e-cc-auto', source: 'claude-code', target: 'cc-automation', animated: true, style: { stroke: '#f8d380' } },
+  // Supabase breakdown
+  { id: 'e-supabase-postgres', source: 'supabase', target: 'postgres', animated: true, style: { stroke: '#8b5cf6' } },
+  { id: 'e-supabase-auth', source: 'supabase', target: 'auth', animated: true, style: { stroke: '#8b5cf6' } },
+
+  // Cloudflare breakdown
+  { id: 'e-cloudflare-d1', source: 'cloudflare', target: 'd1-db', animated: true, style: { stroke: '#8b5cf6' } },
+  { id: 'e-cloudflare-r2', source: 'cloudflare', target: 'r2-storage', animated: true, style: { stroke: '#8b5cf6' } },
 
   // IDEA Framework breakdown
   { id: 'e-idea-inst', source: 'idea-framework', target: 'instructions', animated: true, style: { stroke: '#8b5cf6' } },
-  { id: 'e-idea-dec', source: 'idea-framework', target: 'decisions', animated: true, style: { stroke: '#8b5cf6' } },
-  { id: 'e-dec-exec', source: 'decisions', target: 'executions', sourceHandle: 'bottom', animated: true, style: { stroke: '#8b5cf6' } },
+  { id: 'e-idea-exec', source: 'idea-framework', target: 'executions', animated: true, style: { stroke: '#8b5cf6' } },
 
   // Convergence to deliverables
-  { id: 'e-dev-ai', source: 'ag-dev', target: 'ai-systems', animated: true, style: { stroke: '#3b82f6' } },
-  { id: 'e-coding-ai', source: 'cc-coding', target: 'ai-systems', animated: true, style: { stroke: '#f8d380' } },
-  { id: 'e-auto-automations', source: 'cc-automation', target: 'automations', animated: true, style: { stroke: '#f8d380' } },
-  { id: 'e-exec-automations', source: 'executions', target: 'automations', animated: true, style: { stroke: '#8b5cf6' } },
+  { id: 'e-react-ai', source: 'react-apps', target: 'ai-systems', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-api-web', source: 'api-routes', target: 'web-apps', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-postgres-ai', source: 'postgres', target: 'ai-systems', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-d1-web', source: 'd1-db', target: 'web-apps', animated: true, style: { stroke: '#3b82f6' } },
 
   // Deliverables to clients
   { id: 'e-ai-target', source: 'ai-systems', target: 'target-clients', animated: true, style: { stroke: '#3b82f6' } },
-  { id: 'e-auto-target', source: 'automations', target: 'target-clients', animated: true, style: { stroke: '#3b82f6' } },
+  { id: 'e-web-target', source: 'web-apps', target: 'target-clients', animated: true, style: { stroke: '#3b82f6' } },
 
   // Final flow
   { id: 'e-target-have', source: 'target-clients', target: 'have-clients', animated: true, style: { stroke: '#3b82f6' } },
@@ -87,14 +97,46 @@ const fulfillmentEdges: Edge[] = [
 
 const responsibilities = [
   {
-    title: 'AI System Building',
-    description: 'Build custom AI systems for clients using Claude Code and Anti-Gravity',
+    title: 'Anti-Gravity + Claude Code',
+    description: 'Core AI development tools for building advanced systems',
     tasks: [
-      'Understand client requirements',
-      'Design system architecture',
-      'Build using IDEA Framework',
-      'Test and iterate',
-      'Deploy and document',
+      'Use Anti-Gravity for AI-powered development',
+      'Build with Claude Code for coding tasks',
+      'Create complex automations and systems',
+      'Deploy production-ready applications',
+    ],
+    status: 'active',
+  },
+  {
+    title: 'Next.js Development',
+    description: 'Build production web applications with React',
+    tasks: [
+      'Create React applications',
+      'Build API routes and backends',
+      'Server-side rendering and optimization',
+      'Deploy to Vercel or Cloudflare',
+    ],
+    status: 'active',
+  },
+  {
+    title: 'Supabase Backend',
+    description: 'Backend as a service with Postgres database',
+    tasks: [
+      'Design database schemas',
+      'Set up authentication flows',
+      'Build real-time features',
+      'Manage user data and permissions',
+    ],
+    status: 'active',
+  },
+  {
+    title: 'Cloudflare Infrastructure',
+    description: 'Edge computing and storage solutions',
+    tasks: [
+      'D1 edge SQL databases',
+      'R2 object storage for files',
+      'Workers for serverless functions',
+      'Global CDN and performance',
     ],
     status: 'active',
   },
@@ -106,18 +148,6 @@ const responsibilities = [
       'Project planning and milestones',
       'Development and delivery',
       'Training and handover',
-      'Ongoing support',
-    ],
-    status: 'active',
-  },
-  {
-    title: 'Product Development',
-    description: 'Build and improve internal products (10xContent, 10xLeads)',
-    tasks: [
-      'Finish 10xContent.io (handoff to developer Monday)',
-      'Build 10xLeads.io infrastructure',
-      'Create documentation and training',
-      'Iterate based on feedback',
     ],
     status: 'active',
   },
@@ -160,8 +190,8 @@ export default function FulfillmentPage() {
               </div>
             </div>
             <p className="text-xl text-[#999] mb-8 leading-relaxed">
-              Responsible for delivering AI-powered systems to clients. Focus on 7-figure+
-              businesses who already have customers but need fulfillment systems.
+              Uses Anti-Gravity + Claude Code with advanced coding tools (Next.js, Supabase, Cloudflare D1/R2)
+              to build AI systems for 7-figure+ clients.
             </p>
           </div>
         </div>
@@ -209,7 +239,7 @@ export default function FulfillmentPage() {
         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-4">Fulfillment Workflow</h2>
-            <p className="text-[#999]">The tools and frameworks Max uses for client delivery</p>
+            <p className="text-[#999]">Anti-Gravity + Claude Code with advanced coding tools</p>
           </div>
 
           {/* Legend */}
@@ -220,11 +250,11 @@ export default function FulfillmentPage() {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 md:w-4 md:h-4 rounded bg-gradient-to-r from-[#f8d380] to-[#fbbf24]" />
-              <span className="text-[#f8d380]">AI-Powered</span>
+              <span className="text-[#f8d380]">AI Core</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 md:w-4 md:h-4 rounded bg-gradient-to-r from-purple-500 to-purple-600" />
-              <span className="text-purple-400">Tools</span>
+              <span className="text-purple-400">Coding Tools</span>
             </div>
           </div>
 
@@ -256,7 +286,7 @@ export default function FulfillmentPage() {
           <h2 className="text-3xl font-bold mb-4">Responsibilities</h2>
           <p className="text-[#999]">Key areas of focus for client fulfillment</p>
         </div>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {responsibilities.map((item) => (
             <div key={item.title} className="card">
               <div className="flex items-center justify-between mb-4">
@@ -282,24 +312,32 @@ export default function FulfillmentPage() {
         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold mb-4">Tech Stack</h2>
-            <p className="text-[#999]">The tools powering fulfillment</p>
+            <p className="text-[#999]">Advanced coding tools for fulfillment</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-            <div className="card text-center">
-              <div className="text-3xl font-bold text-blue-400 mb-2">Anti-Gravity</div>
-              <div className="text-[#888] text-sm">AI Dev Environment</div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-[#f8d380] mb-1">Anti-Gravity</div>
+              <div className="text-[#888] text-xs">AI Dev Env</div>
             </div>
-            <div className="card text-center">
-              <div className="text-3xl font-bold text-[#f8d380] mb-2">Claude Code</div>
-              <div className="text-[#888] text-sm">AI Coding Assistant</div>
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-[#f8d380] mb-1">Claude Code</div>
+              <div className="text-[#888] text-xs">AI Coding</div>
             </div>
-            <div className="card text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-2">IDEA</div>
-              <div className="text-[#888] text-sm">Framework</div>
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-blue-400 mb-1">Next.js</div>
+              <div className="text-[#888] text-xs">React Framework</div>
             </div>
-            <div className="card text-center">
-              <div className="text-3xl font-bold text-cyan-400 mb-2">Airtable</div>
-              <div className="text-[#888] text-sm">Databases</div>
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-green-400 mb-1">Supabase</div>
+              <div className="text-[#888] text-xs">Backend</div>
+            </div>
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-orange-400 mb-1">Cloudflare D1</div>
+              <div className="text-[#888] text-xs">Edge DB</div>
+            </div>
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-orange-400 mb-1">Cloudflare R2</div>
+              <div className="text-[#888] text-xs">Storage</div>
             </div>
           </div>
         </div>
@@ -308,8 +346,8 @@ export default function FulfillmentPage() {
       {/* Footer */}
       <footer className="border-t border-[#333] py-8">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
-          <Link href="/acquisition" className="btn-sarah text-sm">
-            &larr; View Acquisition (Sarah)
+          <Link href="/acquisition" className="btn-sara text-sm">
+            &larr; View Acquisition (Sara)
           </Link>
           <Link href="/" className="text-[#666] hover:text-white text-sm">
             Back to Overview

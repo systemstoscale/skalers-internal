@@ -14,47 +14,49 @@ import {
 import '@xyflow/react/dist/style.css';
 import { nodeTypes } from '@/components/FlowNodes';
 
-// Sarah's acquisition workflow
+// Sara's acquisition workflow
 const acquisitionNodes: Node[] = [
-  // Top: Sarah
-  { id: 'sarah', type: 'sarah', position: { x: 300, y: 0 }, data: { label: 'Sarah' } },
-  { id: 'acquisition', type: 'process', position: { x: 300, y: 80 }, data: { label: 'Client Acquisition' } },
+  // Top: Sara + Core Tools
+  { id: 'sara', type: 'sara', position: { x: 300, y: 0 }, data: { label: 'Sara' } },
+  { id: 'core-tools', type: 'ai', position: { x: 300, y: 80 }, data: { label: 'Anti-Gravity + Claude Code' } },
+  { id: 'acquisition', type: 'process', position: { x: 300, y: 160 }, data: { label: 'Client Acquisition' } },
 
   // Three main systems
-  { id: 'leads-system', type: 'product', position: { x: 100, y: 180 }, data: { label: '10xLeads.io' } },
-  { id: 'content-system', type: 'product', position: { x: 300, y: 180 }, data: { label: '10xContent.io' } },
-  { id: 'automation-system', type: 'tool', position: { x: 500, y: 180 }, data: { label: 'Automation Setup' } },
+  { id: 'leads-system', type: 'product', position: { x: 100, y: 260 }, data: { label: '10xLeads.io' } },
+  { id: 'content-system', type: 'product', position: { x: 300, y: 260 }, data: { label: '10xContent.io' } },
+  { id: 'nocode-tools', type: 'tool', position: { x: 500, y: 260 }, data: { label: 'No-Code Tools' } },
 
   // Leads System breakdown
-  { id: 'scrape', type: 'process', position: { x: 0, y: 280 }, data: { label: 'Scrape Data' } },
-  { id: 'enrich', type: 'process', position: { x: 100, y: 360 }, data: { label: 'Enrich Leads' } },
-  { id: 'outreach', type: 'process', position: { x: 0, y: 440 }, data: { label: 'Automated Outreach' } },
+  { id: 'scrape', type: 'process', position: { x: 0, y: 360 }, data: { label: 'Scrape Data' } },
+  { id: 'enrich', type: 'process', position: { x: 100, y: 440 }, data: { label: 'Enrich Leads' } },
+  { id: 'outreach', type: 'process', position: { x: 0, y: 520 }, data: { label: 'Automated Outreach' } },
 
   // Content System breakdown
-  { id: 'video-in', type: 'process', position: { x: 250, y: 280 }, data: { label: '1 Video Input' } },
-  { id: 'ai-process', type: 'ai', position: { x: 300, y: 360 }, data: { label: 'AI Processing' } },
-  { id: 'multi-content', type: 'success', position: { x: 350, y: 440 }, data: { label: '30+ Pieces' } },
+  { id: 'video-in', type: 'process', position: { x: 250, y: 360 }, data: { label: '1 Video Input' } },
+  { id: 'ai-process', type: 'ai', position: { x: 300, y: 440 }, data: { label: 'AI Processing' } },
+  { id: 'multi-content', type: 'success', position: { x: 350, y: 520 }, data: { label: '30+ Pieces' } },
 
-  // Automation breakdown
-  { id: 'ghl', type: 'tool', position: { x: 450, y: 280 }, data: { label: 'GoHighLevel' } },
-  { id: 'manychat', type: 'tool', position: { x: 550, y: 280 }, data: { label: 'ManyChat' } },
-  { id: 'vapi', type: 'tool', position: { x: 500, y: 360 }, data: { label: 'Vapi Voice AI' } },
-  { id: 'ai-bots', type: 'ai', position: { x: 500, y: 440 }, data: { label: 'AI Chatbots' } },
+  // No-code tools breakdown
+  { id: 'n8n', type: 'tool', position: { x: 420, y: 360 }, data: { label: 'N8N' } },
+  { id: 'ghl', type: 'tool', position: { x: 520, y: 360 }, data: { label: 'GoHighLevel' } },
+  { id: 'manychat', type: 'tool', position: { x: 450, y: 440 }, data: { label: 'ManyChat' } },
+  { id: 'closebot', type: 'tool', position: { x: 550, y: 440 }, data: { label: 'Closebot' } },
 
   // Target clients
-  { id: 'target-clients', type: 'client', position: { x: 300, y: 560 }, data: { label: 'Early-Stage B2B' } },
-  { id: 'need-leads', type: 'critical', position: { x: 300, y: 640 }, data: { label: 'Need Lead Generation' } },
+  { id: 'target-clients', type: 'client', position: { x: 300, y: 640 }, data: { label: 'Early-Stage B2B' } },
+  { id: 'need-leads', type: 'critical', position: { x: 300, y: 720 }, data: { label: 'Need Lead Generation' } },
 
   // Outcome
-  { id: 'new-clients', type: 'startEnd', position: { x: 300, y: 740 }, data: { label: 'New Skalers Clients' } },
+  { id: 'new-clients', type: 'startEnd', position: { x: 300, y: 820 }, data: { label: 'New Skalers Clients' } },
 ];
 
 const acquisitionEdges: Edge[] = [
   // Top flow
-  { id: 'e-sarah-acq', source: 'sarah', target: 'acquisition', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-sara-tools', source: 'sara', target: 'core-tools', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-tools-acq', source: 'core-tools', target: 'acquisition', animated: true, style: { stroke: '#f8d380' } },
   { id: 'e-acq-leads', source: 'acquisition', target: 'leads-system', animated: true, style: { stroke: '#ec4899' } },
   { id: 'e-acq-content', source: 'acquisition', target: 'content-system', animated: true, style: { stroke: '#ec4899' } },
-  { id: 'e-acq-auto', source: 'acquisition', target: 'automation-system', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-acq-nocode', source: 'acquisition', target: 'nocode-tools', animated: true, style: { stroke: '#ec4899' } },
 
   // Leads system flow
   { id: 'e-leads-scrape', source: 'leads-system', target: 'scrape', animated: true, style: { stroke: '#6366f1' } },
@@ -66,16 +68,16 @@ const acquisitionEdges: Edge[] = [
   { id: 'e-video-ai', source: 'video-in', target: 'ai-process', animated: true, style: { stroke: '#f8d380' } },
   { id: 'e-ai-multi', source: 'ai-process', target: 'multi-content', animated: true, style: { stroke: '#22c55e' } },
 
-  // Automation flow
-  { id: 'e-auto-ghl', source: 'automation-system', target: 'ghl', animated: true, style: { stroke: '#8b5cf6' } },
-  { id: 'e-auto-many', source: 'automation-system', target: 'manychat', animated: true, style: { stroke: '#8b5cf6' } },
-  { id: 'e-ghl-vapi', source: 'ghl', target: 'vapi', animated: true, style: { stroke: '#8b5cf6' } },
-  { id: 'e-many-bots', source: 'manychat', target: 'ai-bots', animated: true, style: { stroke: '#f8d380' } },
+  // No-code tools flow
+  { id: 'e-nocode-n8n', source: 'nocode-tools', target: 'n8n', animated: true, style: { stroke: '#8b5cf6' } },
+  { id: 'e-nocode-ghl', source: 'nocode-tools', target: 'ghl', animated: true, style: { stroke: '#8b5cf6' } },
+  { id: 'e-n8n-manychat', source: 'n8n', target: 'manychat', animated: true, style: { stroke: '#8b5cf6' } },
+  { id: 'e-ghl-closebot', source: 'ghl', target: 'closebot', animated: true, style: { stroke: '#8b5cf6' } },
 
   // Convergence to target
   { id: 'e-outreach-target', source: 'outreach', target: 'target-clients', animated: true, style: { stroke: '#ec4899' } },
   { id: 'e-multi-target', source: 'multi-content', target: 'target-clients', animated: true, style: { stroke: '#ec4899' } },
-  { id: 'e-bots-target', source: 'ai-bots', target: 'target-clients', animated: true, style: { stroke: '#ec4899' } },
+  { id: 'e-closebot-target', source: 'closebot', target: 'target-clients', animated: true, style: { stroke: '#ec4899' } },
 
   // Final flow
   { id: 'e-target-need', source: 'target-clients', target: 'need-leads', animated: true, style: { stroke: '#ec4899' } },
@@ -83,6 +85,17 @@ const acquisitionEdges: Edge[] = [
 ];
 
 const responsibilities = [
+  {
+    title: 'Anti-Gravity + Claude Code',
+    description: 'Core AI development tools for building and connecting systems',
+    tasks: [
+      'Use Anti-Gravity for AI-powered development',
+      'Connect to no-code tools via Claude Code',
+      'Build automations and workflows',
+      'Create client acquisition systems',
+    ],
+    status: 'active',
+  },
   {
     title: '10xLeads.io',
     description: 'Build and operate the leads machine for B2B client acquisition',
@@ -106,6 +119,17 @@ const responsibilities = [
     status: 'building',
   },
   {
+    title: 'N8N Workflows',
+    description: 'Workflow automation platform for connecting tools',
+    tasks: [
+      'Build automation workflows',
+      'Connect APIs and services',
+      'Set up triggers and actions',
+      'Monitor and debug workflows',
+    ],
+    status: 'active',
+  },
+  {
     title: 'GoHighLevel Setup',
     description: 'Set up CRM and automation for clients',
     tasks: [
@@ -117,8 +141,8 @@ const responsibilities = [
     status: 'active',
   },
   {
-    title: 'ManyChat & AI Bots',
-    description: 'Social media automation and chatbot setup',
+    title: 'ManyChat & Closebot',
+    description: 'Social media automation and AI sales chatbots',
     tasks: [
       'Build conversation flows',
       'Set up AI-powered responses',
@@ -126,17 +150,6 @@ const responsibilities = [
       'Lead qualification bots',
     ],
     status: 'active',
-  },
-  {
-    title: 'Vapi Voice AI',
-    description: 'Voice AI agents for phone interactions',
-    tasks: [
-      'Design call flows',
-      'Configure AI voice agents',
-      'Appointment booking automation',
-      'Call monitoring and optimization',
-    ],
-    status: 'planned',
   },
 ];
 
@@ -156,13 +169,13 @@ export default function AcquisitionPage() {
                 S
               </div>
               <div className="text-left">
-                <h1 className="text-4xl font-bold text-white">Sarah</h1>
+                <h1 className="text-4xl font-bold text-white">Sara</h1>
                 <p className="text-pink-400 text-lg">Client Acquisition</p>
               </div>
             </div>
             <p className="text-xl text-[#999] mb-8 leading-relaxed">
-              Responsible for bringing in new clients through automated lead generation,
-              content systems, and AI-powered acquisition tools.
+              Uses Anti-Gravity + Claude Code to connect no-code tools (N8N, GHL, ManyChat, Closebot)
+              for automated lead generation and client acquisition.
             </p>
           </div>
         </div>
@@ -173,15 +186,15 @@ export default function AcquisitionPage() {
         <div className="max-w-7xl mx-auto px-6 py-16">
           <h2 className="text-2xl font-bold mb-8 text-center">Target Clients</h2>
           <div className="grid md:grid-cols-3 gap-6">
-            <div className="card card-sarah">
+            <div className="card card-sara">
               <h3 className="font-bold text-lg mb-2">Early-Stage Businesses</h3>
               <p className="text-[#999] text-sm">Pre-7 figure businesses that haven&apos;t cracked client acquisition yet</p>
             </div>
-            <div className="card card-sarah">
+            <div className="card card-sara">
               <h3 className="font-bold text-lg mb-2">B2B Companies</h3>
               <p className="text-[#999] text-sm">Business-to-business companies that need systematic lead generation</p>
             </div>
-            <div className="card card-sarah">
+            <div className="card card-sara">
               <h3 className="font-bold text-lg mb-2">Need Lead Gen</h3>
               <p className="text-[#999] text-sm">Businesses struggling with consistent client acquisition</p>
             </div>
@@ -193,22 +206,22 @@ export default function AcquisitionPage() {
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-4">Acquisition Workflow</h2>
-          <p className="text-[#999]">The systems and tools Sarah uses for client acquisition</p>
+          <p className="text-[#999]">Anti-Gravity + Claude Code connecting to no-code tools</p>
         </div>
 
         {/* Legend */}
         <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-6 text-xs md:text-sm">
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 md:w-4 md:h-4 rounded bg-gradient-to-r from-pink-500 to-pink-600" />
-            <span className="text-pink-400">Sarah&apos;s Domain</span>
+            <span className="text-pink-400">Sara&apos;s Domain</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 md:w-4 md:h-4 rounded bg-gradient-to-r from-indigo-500 to-indigo-600" />
-            <span className="text-indigo-400">Products</span>
+            <div className="w-3 h-3 md:w-4 md:h-4 rounded bg-gradient-to-r from-[#f8d380] to-[#fbbf24]" />
+            <span className="text-[#f8d380]">AI Core</span>
           </div>
           <div className="flex items-center gap-2">
             <div className="w-3 h-3 md:w-4 md:h-4 rounded bg-gradient-to-r from-purple-500 to-purple-600" />
-            <span className="text-purple-400">Tools</span>
+            <span className="text-purple-400">No-Code Tools</span>
           </div>
         </div>
 

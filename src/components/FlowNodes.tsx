@@ -93,8 +93,8 @@ export const AINode = memo(({ data }: NodeProps) => {
 });
 AINode.displayName = 'AINode';
 
-// Sarah Node - Pink for acquisition
-export const SarahNode = memo(({ data }: NodeProps) => {
+// Sara Node - Pink for acquisition
+export const SaraNode = memo(({ data }: NodeProps) => {
   return (
     <div className={`${baseNodeStyle} bg-gradient-to-r from-pink-500 to-pink-600 border-pink-400 text-white glow-pink`}>
       <Handle type="target" position={Position.Top} className="!bg-pink-400" />
@@ -107,7 +107,7 @@ export const SarahNode = memo(({ data }: NodeProps) => {
     </div>
   );
 });
-SarahNode.displayName = 'SarahNode';
+SaraNode.displayName = 'SaraNode';
 
 // Max Node - Blue for fulfillment
 export const MaxNode = memo(({ data }: NodeProps) => {
@@ -178,7 +178,7 @@ export const nodeTypes = {
   critical: CriticalNode,
   success: SuccessNode,
   ai: AINode,
-  sarah: SarahNode,
+  sara: SaraNode,
   max: MaxNode,
   tool: ToolNode,
   client: ClientNode,
