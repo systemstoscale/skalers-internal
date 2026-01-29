@@ -175,12 +175,12 @@ const responsibilities = [
 ];
 
 const currentClients = [
-  { name: 'Samuel Higgs (Advanced Chiro)', type: 'AI Practice Automation', status: 'active' },
   { name: 'AWC (Alexandra Weber Coaching)', type: 'AI Coaching Systems', status: 'active', note: 'Deliver awc.skalers.io on time' },
-  { name: 'Mark Dhamma Partnership', type: 'Skalers Partnership', status: 'active' },
 ];
 
 const prospectsToClose = [
+  { name: 'Samuel Higgs (Advanced Chiro)', type: 'AI Practice Automation', status: 'closing', note: 'Continue AI practice automation discussions' },
+  { name: 'Mark Dhamma Partnership', type: 'Skalers Partnership', status: 'closing', note: 'Finalize partnership terms' },
   { name: 'Olga (Proescenic.com)', type: 'AI Systems', status: 'closing', note: 'Show exactly what we will build' },
 ];
 

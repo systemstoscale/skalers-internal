@@ -18,11 +18,18 @@ const maxPriorities = [
     deadline: 'This week',
   },
   {
-    title: 'Client Fulfillment - Samuel Higgs',
-    description: 'Continue delivering AI practice automation for Advanced Quiropráctica',
+    title: 'Deliver AWC (awc.skalers.io)',
+    description: 'Complete Alexandra Weber Coaching project with all client feedback and training',
     priority: 'high',
     status: 'active',
-    deadline: 'Ongoing',
+    deadline: 'On time',
+  },
+  {
+    title: 'Close Prospects',
+    description: 'Samuel Higgs, Mark Dhamma, Olga (Proescenic) - show what we can build',
+    priority: 'high',
+    status: 'in-progress',
+    deadline: 'This week',
   },
   {
     title: 'Teach Sara the Systems',
