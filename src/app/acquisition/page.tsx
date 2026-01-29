@@ -4,7 +4,6 @@ import Link from 'next/link';
 import {
   ReactFlow,
   Background,
-  Controls,
   useNodesState,
   useEdgesState,
   BackgroundVariant,
@@ -18,7 +17,7 @@ import { nodeTypes } from '@/components/FlowNodes';
 const acquisitionNodes: Node[] = [
   // Top: Sara + Core Tools
   { id: 'sara', type: 'sara', position: { x: 300, y: 0 }, data: { label: 'Sara' } },
-  { id: 'core-tools', type: 'ai', position: { x: 300, y: 80 }, data: { label: 'Anti-Gravity + Claude Code' } },
+  { id: 'core-tools', type: 'ai', position: { x: 300, y: 80 }, data: { label: 'Antigravity + Claude Code' } },
   { id: 'acquisition', type: 'process', position: { x: 300, y: 160 }, data: { label: 'Client Acquisition' } },
 
   // Three main systems
@@ -86,10 +85,10 @@ const acquisitionEdges: Edge[] = [
 
 const responsibilities = [
   {
-    title: 'Anti-Gravity + Claude Code',
+    title: 'Antigravity + Claude Code',
     description: 'Core AI development tools for building and connecting systems',
     tasks: [
-      'Use Anti-Gravity for AI-powered development',
+      'Use Antigravity for AI-powered development',
       'Connect to no-code tools via Claude Code',
       'Build automations and workflows',
       'Create client acquisition systems',
@@ -151,6 +150,28 @@ const responsibilities = [
     ],
     status: 'active',
   },
+  {
+    title: 'Vapi Voice Agents',
+    description: 'AI-powered phone calling and voice automation',
+    tasks: [
+      'Set up AI voice agents for calls',
+      'Configure call flows and scripts',
+      'Integrate with CRM for call tracking',
+      'Train agents on client-specific knowledge',
+    ],
+    status: 'active',
+  },
+  {
+    title: 'Cold Outreach Stack',
+    description: 'Instantly, Apollo, Clay for automated outreach',
+    tasks: [
+      'Build lead lists with Apollo.io',
+      'Enrich data with Clay workflows',
+      'Set up email sequences in Instantly',
+      'Monitor deliverability and responses',
+    ],
+    status: 'active',
+  },
 ];
 
 export default function AcquisitionPage() {
@@ -174,7 +195,7 @@ export default function AcquisitionPage() {
               </div>
             </div>
             <p className="text-xl text-[#999] mb-8 leading-relaxed">
-              Uses Anti-Gravity + Claude Code to connect no-code tools (N8N, GHL, ManyChat, Closebot)
+              Uses Antigravity + Claude Code to connect no-code tools (N8N, GHL, ManyChat, Closebot)
               for automated lead generation and client acquisition.
             </p>
           </div>
@@ -206,7 +227,7 @@ export default function AcquisitionPage() {
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="text-center mb-8">
           <h2 className="text-3xl font-bold mb-4">Acquisition Workflow</h2>
-          <p className="text-[#999]">Anti-Gravity + Claude Code connecting to no-code tools</p>
+          <p className="text-[#999]">Antigravity + Claude Code connecting to no-code tools</p>
         </div>
 
         {/* Legend */}
@@ -234,14 +255,13 @@ export default function AcquisitionPage() {
             minZoom={0.25}
             maxZoom={1.5}
             fitViewOptions={{ padding: 0.2 }}
-            nodesDraggable={false}
+            nodesDraggable={true}
             nodesConnectable={false}
-            elementsSelectable={false}
+            elementsSelectable={true}
             panOnDrag={true}
             zoomOnScroll={true}
           >
             <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#333" />
-            <Controls showInteractive={false} />
           </ReactFlow>
         </div>
       </section>

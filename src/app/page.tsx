@@ -4,7 +4,6 @@ import Link from 'next/link';
 import {
   ReactFlow,
   Background,
-  Controls,
   useNodesState,
   useEdgesState,
   BackgroundVariant,
@@ -24,7 +23,7 @@ const businessNodes: Node[] = [
   { id: 'sara-header', type: 'sara', position: { x: 50, y: 180 }, data: { label: 'Sara' } },
   { id: 'acquisition', type: 'process', position: { x: 50, y: 260 }, data: { label: 'Client Acquisition' } },
 
-  // Sara's products (uses Anti-Gravity + Claude Code → No-Code tools)
+  // Sara's products (uses Antigravity + Claude Code → No-Code tools)
   { id: '10x-leads', type: 'product', position: { x: -100, y: 360 }, data: { label: '10xLeads.io' } },
   { id: '10x-content', type: 'product', position: { x: 50, y: 360 }, data: { label: '10xContent.io' } },
   { id: 'nocode-tools', type: 'tool', position: { x: 200, y: 360 }, data: { label: 'No-Code Tools' } },
@@ -80,21 +79,33 @@ const businessEdges: Edge[] = [
 ];
 
 const saraTools = [
-  { name: 'Anti-Gravity', description: 'AI development environment', status: 'active' },
+  { name: 'Antigravity', description: 'AI development environment', status: 'active' },
   { name: 'Claude Code', description: 'AI-powered coding assistant', status: 'active' },
   { name: 'N8N', description: 'Workflow automation platform', status: 'active' },
   { name: 'GoHighLevel', description: 'CRM, automations, funnels', status: 'active' },
-  { name: 'ManyChat', description: 'Social media automation & AI bots', status: 'active' },
+  { name: 'ManyChat', description: 'Instagram/FB DM automation', status: 'active' },
   { name: 'Closebot', description: 'AI sales chatbot', status: 'active' },
+  { name: 'Vapi', description: 'AI voice agents & calling', status: 'active' },
+  { name: 'Instantly', description: 'Cold email at scale', status: 'active' },
+  { name: 'Apollo.io', description: 'Lead database & enrichment', status: 'active' },
+  { name: 'Clay', description: 'Data enrichment workflows', status: 'active' },
+  { name: 'Airtable', description: 'Database & automation', status: 'active' },
+  { name: 'Zapier', description: 'Simple integrations', status: 'active' },
 ];
 
 const maxTools = [
-  { name: 'Anti-Gravity', description: 'AI development environment', status: 'active' },
+  { name: 'Antigravity', description: 'AI development environment', status: 'active' },
   { name: 'Claude Code', description: 'AI-powered coding assistant', status: 'active' },
   { name: 'Next.js', description: 'React framework for web apps', status: 'active' },
   { name: 'Supabase', description: 'Backend as a service (Postgres)', status: 'active' },
   { name: 'Cloudflare D1', description: 'Edge SQL database', status: 'active' },
   { name: 'Cloudflare R2', description: 'Object storage', status: 'active' },
+  { name: 'Cloudflare Workers', description: 'Serverless edge functions', status: 'active' },
+  { name: 'Vercel', description: 'Deployment & hosting', status: 'active' },
+  { name: 'TypeScript', description: 'Type-safe JavaScript', status: 'active' },
+  { name: 'Tailwind CSS', description: 'Utility-first CSS', status: 'active' },
+  { name: 'React Flow', description: 'Interactive diagrams', status: 'active' },
+  { name: 'Cursor', description: 'AI-powered IDE', status: 'active' },
 ];
 
 export default function Home() {
@@ -150,7 +161,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-[#999] mb-6">
-                Responsible for bringing in new clients using Anti-Gravity + Claude Code
+                Responsible for bringing in new clients using Antigravity + Claude Code
                 connected to no-code tools. Focus on early-stage B2B businesses.
               </p>
               <div className="space-y-3">
@@ -187,7 +198,7 @@ export default function Home() {
                 </div>
               </div>
               <p className="text-[#999] mb-6">
-                Responsible for delivering results using Anti-Gravity + Claude Code with
+                Responsible for delivering results using Antigravity + Claude Code with
                 advanced coding tools (Next.js, Supabase, Cloudflare). Focus on 7-figure+ clients.
               </p>
               <div className="space-y-3">
@@ -249,14 +260,13 @@ export default function Home() {
             maxZoom={1.5}
             defaultViewport={{ x: 0, y: 0, zoom: 0.5 }}
             fitViewOptions={{ padding: 0.2 }}
-            nodesDraggable={false}
+            nodesDraggable={true}
             nodesConnectable={false}
-            elementsSelectable={false}
+            elementsSelectable={true}
             panOnDrag={true}
             zoomOnScroll={true}
           >
             <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#333" />
-            <Controls showInteractive={false} />
           </ReactFlow>
         </div>
       </section>
@@ -314,7 +324,7 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-4">Products</h2>
           <p className="text-[#999]">AI-powered products under the Skalers umbrella</p>
         </div>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           <div className="card">
             <h3 className="font-bold text-lg text-[#f8d380] mb-2">Skalers.io</h3>
             <p className="text-[#999] text-sm mb-4">Main agency brand - AI systems for 10x leverage</p>
@@ -329,11 +339,6 @@ export default function Home() {
             <h3 className="font-bold text-lg text-pink-400 mb-2">10xLeads.io</h3>
             <p className="text-[#999] text-sm mb-4">Scrape, enrich, outreach on autopilot</p>
             <span className="status-building">Building</span>
-          </div>
-          <div className="card">
-            <h3 className="font-bold text-lg text-blue-400 mb-2">10xGoals.io</h3>
-            <p className="text-[#999] text-sm mb-4">Goal tracking with Whoop/Oura integration</p>
-            <span className="status-planned">Planned</span>
           </div>
         </div>
       </section>

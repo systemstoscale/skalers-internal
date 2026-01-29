@@ -26,7 +26,7 @@ const maxPriorities = [
   },
   {
     title: 'Teach Sara the Systems',
-    description: 'Document and train Sara on Anti-Gravity, Claude Code, and no-code tools (N8N, GHL, ManyChat, Closebot)',
+    description: 'Document and train Sara on Antigravity, Claude Code, and no-code tools (N8N, GHL, ManyChat, Closebot)',
     priority: 'medium',
     status: 'pending',
     deadline: 'After 10xLeads.io',
@@ -35,7 +35,7 @@ const maxPriorities = [
 
 const saraPriorities: typeof maxPriorities = [
   {
-    title: 'Learn Anti-Gravity + Claude Code',
+    title: 'Learn Antigravity + Claude Code',
     description: 'Master the core AI tools that connect to all no-code platforms',
     priority: 'high',
     status: 'in-progress',

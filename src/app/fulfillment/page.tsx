@@ -4,7 +4,6 @@ import Link from 'next/link';
 import {
   ReactFlow,
   Background,
-  Controls,
   useNodesState,
   useEdgesState,
   BackgroundVariant,
@@ -18,7 +17,7 @@ import { nodeTypes } from '@/components/FlowNodes';
 const fulfillmentNodes: Node[] = [
   // Top: Max + Core Tools
   { id: 'max', type: 'max', position: { x: 300, y: 0 }, data: { label: 'Max' } },
-  { id: 'core-tools', type: 'ai', position: { x: 300, y: 80 }, data: { label: 'Anti-Gravity + Claude Code' } },
+  { id: 'core-tools', type: 'ai', position: { x: 300, y: 80 }, data: { label: 'Antigravity + Claude Code' } },
   { id: 'fulfillment', type: 'process', position: { x: 300, y: 160 }, data: { label: 'Client Fulfillment' } },
 
   // Coding tools
@@ -97,10 +96,10 @@ const fulfillmentEdges: Edge[] = [
 
 const responsibilities = [
   {
-    title: 'Anti-Gravity + Claude Code',
+    title: 'Antigravity + Claude Code',
     description: 'Core AI development tools for building advanced systems',
     tasks: [
-      'Use Anti-Gravity for AI-powered development',
+      'Use Antigravity for AI-powered development',
       'Build with Claude Code for coding tasks',
       'Create complex automations and systems',
       'Deploy production-ready applications',
@@ -166,7 +165,17 @@ const responsibilities = [
 
 const currentClients = [
   { name: 'Samuel Higgs (Advanced Chiro)', type: 'AI Practice Automation', status: 'active' },
+  { name: 'AWC (Alexandra Weber Coaching)', type: 'AI Coaching Systems', status: 'active' },
   { name: 'Mark Dhamma Partnership', type: 'Skalers Partnership', status: 'active' },
+];
+
+const maxKpis = [
+  { label: 'Content Pieces', description: 'Weekly content created', target: '10+' },
+  { label: 'Calls Booked', description: 'Sales calls scheduled', target: '5+' },
+  { label: 'Close Rate', description: 'Deals closed / calls', target: '30%+' },
+  { label: 'Client NPS', description: 'Net promoter score', target: '9+' },
+  { label: 'Delivery Time', description: 'Days to first deliverable', target: '<14' },
+  { label: 'Revenue', description: 'Monthly recurring', target: '$20K+' },
 ];
 
 export default function FulfillmentPage() {
@@ -190,7 +199,7 @@ export default function FulfillmentPage() {
               </div>
             </div>
             <p className="text-xl text-[#999] mb-8 leading-relaxed">
-              Uses Anti-Gravity + Claude Code with advanced coding tools (Next.js, Supabase, Cloudflare D1/R2)
+              Uses Antigravity + Claude Code with advanced coding tools (Next.js, Supabase, Cloudflare D1/R2)
               to build AI systems for 7-figure+ clients.
             </p>
           </div>
@@ -234,12 +243,31 @@ export default function FulfillmentPage() {
         </div>
       </section>
 
+      {/* Key Metrics */}
+      <section className="bg-[#111] border-y border-[#333]">
+        <div className="max-w-7xl mx-auto px-6 py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold mb-4">Key Performance Indicators</h2>
+            <p className="text-[#999]">Metrics Max is responsible for tracking</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {maxKpis.map((kpi) => (
+              <div key={kpi.label} className="card text-center">
+                <div className="text-2xl font-bold text-blue-400 mb-1">{kpi.target}</div>
+                <div className="font-semibold text-white text-sm mb-1">{kpi.label}</div>
+                <div className="text-[#888] text-xs">{kpi.description}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Fulfillment Flow */}
       <section className="bg-[#111] border-y border-[#333]">
         <div className="max-w-7xl mx-auto px-6 py-20">
           <div className="text-center mb-8">
             <h2 className="text-3xl font-bold mb-4">Fulfillment Workflow</h2>
-            <p className="text-[#999]">Anti-Gravity + Claude Code with advanced coding tools</p>
+            <p className="text-[#999]">Antigravity + Claude Code with advanced coding tools</p>
           </div>
 
           {/* Legend */}
@@ -267,14 +295,13 @@ export default function FulfillmentPage() {
               minZoom={0.25}
               maxZoom={1.5}
               fitViewOptions={{ padding: 0.2 }}
-              nodesDraggable={false}
+              nodesDraggable={true}
               nodesConnectable={false}
-              elementsSelectable={false}
+              elementsSelectable={true}
               panOnDrag={true}
               zoomOnScroll={true}
             >
               <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#333" />
-              <Controls showInteractive={false} />
             </ReactFlow>
           </div>
         </div>
@@ -314,9 +341,9 @@ export default function FulfillmentPage() {
             <h2 className="text-3xl font-bold mb-4">Tech Stack</h2>
             <p className="text-[#999]">Advanced coding tools for fulfillment</p>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             <div className="card text-center !p-4">
-              <div className="text-lg font-bold text-[#f8d380] mb-1">Anti-Gravity</div>
+              <div className="text-lg font-bold text-[#f8d380] mb-1">Antigravity</div>
               <div className="text-[#888] text-xs">AI Dev Env</div>
             </div>
             <div className="card text-center !p-4">
@@ -338,6 +365,30 @@ export default function FulfillmentPage() {
             <div className="card text-center !p-4">
               <div className="text-lg font-bold text-orange-400 mb-1">Cloudflare R2</div>
               <div className="text-[#888] text-xs">Storage</div>
+            </div>
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-orange-400 mb-1">Workers</div>
+              <div className="text-[#888] text-xs">Edge Functions</div>
+            </div>
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-purple-400 mb-1">Vercel</div>
+              <div className="text-[#888] text-xs">Deployment</div>
+            </div>
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-blue-400 mb-1">TypeScript</div>
+              <div className="text-[#888] text-xs">Type Safety</div>
+            </div>
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-cyan-400 mb-1">Tailwind</div>
+              <div className="text-[#888] text-xs">CSS Framework</div>
+            </div>
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-pink-400 mb-1">React Flow</div>
+              <div className="text-[#888] text-xs">Diagrams</div>
+            </div>
+            <div className="card text-center !p-4">
+              <div className="text-lg font-bold text-green-400 mb-1">Cursor</div>
+              <div className="text-[#888] text-xs">AI IDE</div>
             </div>
           </div>
         </div>
