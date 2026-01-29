@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
 
@@ -21,9 +22,13 @@ export default function Navigation() {
         <div className="flex items-center justify-between h-14 sm:h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 sm:gap-3">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-to-br from-[#f8d380] to-[#fbbf24] flex items-center justify-center">
-              <span className="text-[#222] font-bold text-lg">S</span>
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Skalers.io"
+              width={40}
+              height={40}
+              className="w-8 h-8 sm:w-10 sm:h-10"
+            />
             <div className="hidden sm:block">
               <span className="font-semibold text-white">Skalers.io</span>
               <span className="text-[#888] text-sm ml-2">Internal</span>
