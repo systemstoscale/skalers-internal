@@ -223,12 +223,77 @@ export default function AcquisitionPage() {
         </div>
       </section>
 
-      {/* Acquisition Flow */}
-      <section className="max-w-7xl mx-auto px-6 py-20">
+      {/* Simple Whiteboard Version */}
+      <section className="max-w-7xl mx-auto px-6 py-16">
         <div className="text-center mb-8">
-          <h2 className="text-3xl font-bold mb-4">Acquisition Workflow</h2>
-          <p className="text-[#999]">Antigravity + Claude Code connecting to no-code tools</p>
+          <h2 className="text-3xl font-bold mb-4">Simple Flow (Whiteboard Version)</h2>
+          <p className="text-[#999]">Easy to draw and explain to clients</p>
         </div>
+
+        <div className="max-w-4xl mx-auto">
+          {/* Simple linear flow */}
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-2">
+            {/* Step 1 */}
+            <div className="card card-sara text-center min-w-[140px]">
+              <div className="text-2xl mb-2">1</div>
+              <div className="font-bold">Find Leads</div>
+              <div className="text-xs text-[#888] mt-1">Apollo, Clay</div>
+            </div>
+
+            <div className="text-pink-400 text-2xl rotate-90 md:rotate-0">→</div>
+
+            {/* Step 2 */}
+            <div className="card card-sara text-center min-w-[140px]">
+              <div className="text-2xl mb-2">2</div>
+              <div className="font-bold">Reach Out</div>
+              <div className="text-xs text-[#888] mt-1">Instantly, Vapi</div>
+            </div>
+
+            <div className="text-pink-400 text-2xl rotate-90 md:rotate-0">→</div>
+
+            {/* Step 3 */}
+            <div className="card card-sara text-center min-w-[140px]">
+              <div className="text-2xl mb-2">3</div>
+              <div className="font-bold">Qualify</div>
+              <div className="text-xs text-[#888] mt-1">ManyChat, Closebot</div>
+            </div>
+
+            <div className="text-pink-400 text-2xl rotate-90 md:rotate-0">→</div>
+
+            {/* Step 4 */}
+            <div className="card card-sara text-center min-w-[140px]">
+              <div className="text-2xl mb-2">4</div>
+              <div className="font-bold">Book Call</div>
+              <div className="text-xs text-[#888] mt-1">GHL Calendar</div>
+            </div>
+
+            <div className="text-green-400 text-2xl rotate-90 md:rotate-0">→</div>
+
+            {/* Step 5 */}
+            <div className="card text-center min-w-[140px] border-green-500 bg-gradient-to-br from-green-500/10 to-green-500/5">
+              <div className="text-2xl mb-2 text-green-400">✓</div>
+              <div className="font-bold text-green-400">New Client</div>
+              <div className="text-xs text-[#888] mt-1">Max closes</div>
+            </div>
+          </div>
+
+          {/* Summary */}
+          <div className="mt-8 text-center">
+            <p className="text-[#888] text-sm">
+              <span className="text-pink-400 font-semibold">Sara</span> runs steps 1-4 &nbsp;|&nbsp;
+              <span className="text-blue-400 font-semibold">Max</span> closes the deal
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Detailed Acquisition Flow */}
+      <section className="bg-[#111] border-y border-[#333]">
+        <div className="max-w-7xl mx-auto px-6 py-20">
+          <div className="text-center mb-8">
+            <h2 className="text-3xl font-bold mb-4">Detailed Workflow</h2>
+            <p className="text-[#999]">Drag nodes to rearrange • Full system view</p>
+          </div>
 
         {/* Legend */}
         <div className="flex flex-wrap justify-center gap-3 md:gap-6 mb-6 text-xs md:text-sm">
@@ -263,6 +328,7 @@ export default function AcquisitionPage() {
           >
             <Background variant={BackgroundVariant.Dots} gap={20} size={1} color="#333" />
           </ReactFlow>
+        </div>
         </div>
       </section>
 

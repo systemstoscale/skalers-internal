@@ -322,7 +322,7 @@ export default function Home() {
       <section className="max-w-7xl mx-auto px-6 py-20">
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Products</h2>
-          <p className="text-[#999]">AI-powered products under the Skalers umbrella</p>
+          <p className="text-[#999]">We use these ourselves to show clients what we can build for them</p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
           <div className="card">
@@ -330,14 +330,16 @@ export default function Home() {
             <p className="text-[#999] text-sm mb-4">Main agency brand - AI systems for 10x leverage</p>
             <span className="status-active">Active</span>
           </div>
-          <div className="card">
+          <div className="card card-sara">
             <h3 className="font-bold text-lg text-pink-400 mb-2">10xContent.io</h3>
-            <p className="text-[#999] text-sm mb-4">1 video to 30+ pieces across all platforms</p>
+            <p className="text-[#999] text-sm mb-2">1 video to 30+ pieces across all platforms</p>
+            <p className="text-xs text-pink-400 mb-3">→ Use as example for content clients</p>
             <span className="status-building">Building</span>
           </div>
-          <div className="card">
+          <div className="card card-sara">
             <h3 className="font-bold text-lg text-pink-400 mb-2">10xLeads.io</h3>
-            <p className="text-[#999] text-sm mb-4">Scrape, enrich, outreach on autopilot</p>
+            <p className="text-[#999] text-sm mb-2">Scrape, enrich, outreach on autopilot</p>
+            <p className="text-xs text-pink-400 mb-3">→ Use as example for lead gen clients</p>
             <span className="status-building">Building</span>
           </div>
         </div>

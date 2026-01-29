@@ -143,10 +143,21 @@ const responsibilities = [
     title: 'Client Projects',
     description: 'Deliver AI-powered solutions for agency clients',
     tasks: [
-      'Discovery calls and scoping',
-      'Project planning and milestones',
-      'Development and delivery',
-      'Training and handover',
+      'AWC: Deliver awc.skalers.io on time',
+      'Incorporate all client feedback',
+      'Provide training and handover',
+      'Close Olga (Proescenic) - show build plan',
+    ],
+    status: 'active',
+  },
+  {
+    title: 'Sales & Closing',
+    description: 'Max closes deals that Sara generates',
+    tasks: [
+      'Run sales calls with qualified leads',
+      'Present solutions using 10xLeads/10xContent',
+      'Close deals and onboard new clients',
+      'Track close rate (target: 30%+)',
     ],
     status: 'active',
   },
@@ -165,8 +176,12 @@ const responsibilities = [
 
 const currentClients = [
   { name: 'Samuel Higgs (Advanced Chiro)', type: 'AI Practice Automation', status: 'active' },
-  { name: 'AWC (Alexandra Weber Coaching)', type: 'AI Coaching Systems', status: 'active' },
+  { name: 'AWC (Alexandra Weber Coaching)', type: 'AI Coaching Systems', status: 'active', note: 'Deliver awc.skalers.io on time' },
   { name: 'Mark Dhamma Partnership', type: 'Skalers Partnership', status: 'active' },
+];
+
+const prospectsToClose = [
+  { name: 'Olga (Proescenic.com)', type: 'AI Systems', status: 'closing', note: 'Show exactly what we will build' },
 ];
 
 const maxKpis = [
@@ -227,19 +242,46 @@ export default function FulfillmentPage() {
         </div>
       </section>
 
-      {/* Current Clients */}
+      {/* Current Clients & Prospects */}
       <section className="max-w-7xl mx-auto px-6 py-16">
-        <h2 className="text-2xl font-bold mb-8 text-center">Current Clients</h2>
-        <div className="grid md:grid-cols-2 gap-6 max-w-2xl mx-auto">
-          {currentClients.map((client) => (
-            <div key={client.name} className="card flex items-center justify-between">
-              <div>
-                <div className="font-semibold text-white">{client.name}</div>
-                <div className="text-sm text-[#888]">{client.type}</div>
-              </div>
-              <span className="status-active">{client.status}</span>
+        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          {/* Current Clients */}
+          <div>
+            <h2 className="text-2xl font-bold mb-6 text-center">Current Clients</h2>
+            <div className="space-y-4">
+              {currentClients.map((client) => (
+                <div key={client.name} className="card">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="font-semibold text-white">{client.name}</div>
+                    <span className="status-active">{client.status}</span>
+                  </div>
+                  <div className="text-sm text-[#888]">{client.type}</div>
+                  {'note' in client && client.note && (
+                    <div className="text-xs text-blue-400 mt-2">→ {client.note}</div>
+                  )}
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Prospects to Close */}
+          <div>
+            <h2 className="text-2xl font-bold mb-6 text-center">Prospects to Close</h2>
+            <div className="space-y-4">
+              {prospectsToClose.map((prospect) => (
+                <div key={prospect.name} className="card card-gold">
+                  <div className="flex items-center justify-between mb-2">
+                    <div className="font-semibold text-white">{prospect.name}</div>
+                    <span className="status-building">{prospect.status}</span>
+                  </div>
+                  <div className="text-sm text-[#888]">{prospect.type}</div>
+                  {prospect.note && (
+                    <div className="text-xs text-[#f8d380] mt-2">→ {prospect.note}</div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
